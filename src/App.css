@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+:root {
+}
+
+@theme {
+  --color-main-750: #73bc31;
+  --color-main-700: #6ec51e;
+  --color-main-300: #a5c492;
+  --color-grey-800: #3d424b;
+  --color-grey-300: #969ba0;
+}
+
+.gradient-1 {
+  background-image: linear-gradient(
+    to bottom left,
+    var(--color-main-700) 22%,
+    var(--color-main-300) 99%
+  );
+}
