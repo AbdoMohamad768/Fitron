@@ -10,12 +10,20 @@
   /* Button color grey */
   --color-grey-800: #3d424b;
   --color-grey-300: #969ba0;
+  --color-grey-200:#353540;
+  --color-green-200:#446627;
   /* color */
-  /* skjdfk */
+  /* Text-Color */
+  --color-green-300:#3B5524;
 }
 
 .gradient-1 {
   background-image: linear-gradient(to bottom left,
       var(--color-main-700) 22%,
       var(--color-main-300) 99%);
+}
+body{
+  background-image: linear-gradient(to right ,
+  var(--color-main-700),
+  var(--color-grey-200));
 }
