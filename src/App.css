@@ -1,29 +1,51 @@
 @import "tailwindcss";
 
-:root {}
+:root {
+}
 
 @theme {
-  /* Button color main */
+  --color-main-850: #3b5524;
+  --color-main-800: #446627;
   --color-main-750: #73bc31;
   --color-main-700: #6ec51e;
   --color-main-300: #a5c492;
-  /* Button color grey */
-  --color-grey-800: #3d424b;
-  --color-grey-300: #969ba0;
-  --color-grey-200:#353540;
-  --color-green-200:#446627;
-  /* color */
-  /* Text-Color */
-  --color-green-300:#3B5524;
+  --color-grey-500: #414141;
+  --color-grey-400: #3d424b;
+  --color-grey-350: #969ba0;
+  --color-grey-300: #afabab88;
+  --color-grey-200: #353540;
+  --color-grey-50: #efefef;
+  --shadow-custom-1: 32px 31px 83px rgba(0, 0, 0, 0.25);
 }
 
 .gradient-1 {
-  background-image: linear-gradient(to bottom left,
-      var(--color-main-700) 22%,
-      var(--color-main-300) 99%);
+  background-image: linear-gradient(
+    to bottom left,
+    var(--color-main-700) 22%,
+    var(--color-main-300) 99%
+  );
 }
-body{
-  background-image: linear-gradient(to right ,
-  var(--color-main-700),
-  var(--color-grey-200));
+
+main {
+  height: 100vh;
+  background-image: linear-gradient(
+    to bottom left,
+    var(--color-main-700) 22%,
+    var(--color-main-300) 99%
+  );
+}
+
+body {
+  background-image: linear-gradient(
+    to right,
+    var(--color-main-700),
+    var(--color-grey-200)
+  );
+}
+
+.signup-form {
+  @apply w-md h-fit shadow-custom-1 rounded-lg p-8 bg-grey-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white;
+}
+
+.test {
 }
