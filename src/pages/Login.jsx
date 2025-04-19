@@ -4,7 +4,10 @@ const Login = () => {
   return (
     <div className="h-screen flex items-center justify-center gradient-1">
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-[40rem]">
-        <Logo />
+        <div className="flex  items-center gap-2">
+          <Logo />
+          <span className="font-bold text-3xl">Fito</span>
+        </div>
         <h2 className="text-xl font-semibold mb-4 text-center">
           Log In Your Account
         </h2>
@@ -22,7 +25,7 @@ const Login = () => {
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-3">
             <label htmlFor="password" className="block text-gray-700 mb-2">
               Password
             </label>
@@ -60,6 +63,8 @@ const Login = () => {
               </button>
             </div>
           </div>
+
+          <a className="text-green-400">Forgot passowrd</a>
 
           <div className="flex items-center mb-4">
             <input type="checkbox" id="remember" className="mr-2" />
