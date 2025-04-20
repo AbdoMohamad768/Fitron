@@ -41,9 +41,9 @@ function SignUp() {
 
         <LoginSignupInput
           id={"confirm-password"}
-          type={"confirm-password"}
+          type={"password"}
           placeholder={"Confirm Password"}
-          label={"confirm-password"}
+          label={"Confirm Password"}
           required={true}
         />
 

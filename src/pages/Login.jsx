@@ -5,9 +5,9 @@ import Logo from "../components/Logo";
 
 const Login = () => {
   return (
-    <div className="h-screen flex items-center justify-center gradient-1">
+    <main className="h-screen flex items-center justify-center gradient-1">
       <div className="login-form">
-        <div className="flex  items-center gap-2">
+        <div className="flex items-center gap-2">
           <Logo width={"50"} height={"50"} />
           <span className="font-bold text-3xl">Fito</span>
         </div>
@@ -57,7 +57,7 @@ const Login = () => {
           </NavLink>
         </p>
       </div>
-    </div>
+    </main>
   );
 };
 

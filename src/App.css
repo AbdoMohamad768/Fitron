@@ -34,7 +34,7 @@
 }
 
 main {
-  height: 100vh;
+  min-height: 100vh;
   background-image: linear-gradient(
     to bottom left,
     var(--color-main-700) 22%,
