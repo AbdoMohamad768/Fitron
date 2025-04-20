@@ -41,11 +41,12 @@ function Landing() {
           </NavLink>
         </div>
 
-        <figure className="image">
+
+        <figure className="image flex-shrink-0">
           <img
             src="./../public/landing-page.png"
             alt="image"
-            className="w-120 object-cover"
+            className="w-102 object-cover"
           />
         </figure>
       </div>
@@ -54,3 +55,4 @@ function Landing() {
 }
 
 export default Landing;
+
