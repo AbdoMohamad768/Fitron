@@ -1,3 +1,4 @@
+import { NavLink } from "react-router";
 import LoginSignupButton from "../components/LoginSignupButton";
 import LoginSignupInput from "../components/LoginSignupInput";
 import Logo from "../components/Logo";
@@ -5,7 +6,7 @@ import Logo from "../components/Logo";
 const Login = () => {
   return (
     <div className="h-screen flex items-center justify-center gradient-1">
-      <div className="signup-form">
+      <div className="login-form">
         <div className="flex  items-center gap-2">
           <Logo width={"50"} height={"50"} />
           <span className="font-bold text-3xl">Fito</span>
@@ -35,7 +36,9 @@ const Login = () => {
             />
           </div>
 
-          <a className="text-green-400">Forgot passowrd</a>
+          <NavLink to="/recovery" className="text-green-400">
+            Forgot passowrd
+          </NavLink>
 
           <div className="flex items-center mb-4">
             <input type="checkbox" id="remember" className="mr-2" />
@@ -46,11 +49,12 @@ const Login = () => {
           <LoginSignupButton type={"submit"}>Log In</LoginSignupButton>
         </form>
 
-        <p className="mt-2  text-gray-600">
-          Don't have an account?
-          <a href="#" className="text-green-500 hover:underline">
+        <p className="mt-4  text-gray-600">
+          Don&apos;t have an account?
+          <NavLink to="/signup" className="text-green-500 hover:underline">
+            {" "}
             Sign Up
-          </a>
+          </NavLink>
         </p>
       </div>
     </div>

@@ -25,6 +25,13 @@
     var(--color-main-300) 99%
   );
 }
+.gradient-2 {
+  background-image: linear-gradient(
+    to right,
+    var(--color-main-700),
+    var(--color-grey-200)
+  );
+}
 
 main {
   height: 100vh;
@@ -35,7 +42,7 @@ main {
   );
 }
 
-body {
+#root {
   background-image: linear-gradient(
     to right,
     var(--color-main-700),
@@ -43,7 +50,9 @@ body {
   );
 }
 
-.signup-form {
+.signup-form,
+.login-form,
+.recovery-form {
   @apply w-md h-fit shadow-custom-1 rounded-lg p-8 bg-grey-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white;
 }
 

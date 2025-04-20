@@ -1,5 +1,6 @@
+import { NavLink } from "react-router";
+import LoginSignupInput from "./../components/LoginSignupInput";
 import LoginSignupButton from "../components/LoginSignupButton";
-import LoginSignupInput from "../components/LoginSignupInput";
 import Logo from "../components/Logo";
 
 function SignUp() {
@@ -49,9 +50,9 @@ function SignUp() {
         <LoginSignupButton type={"submit"}>Sign Up</LoginSignupButton>
         <p className=" mt-2  text-gray-600">
           Already have an account?{" "}
-          <a href="/login" className="text-main-750">
+          <NavLink to="/login" className="text-main-750">
             Login
-          </a>
+          </NavLink>
         </p>
       </form>
     </main>

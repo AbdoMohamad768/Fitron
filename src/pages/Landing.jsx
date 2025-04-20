@@ -1,41 +1,53 @@
+import { NavLink } from "react-router";
+
 function Landing() {
   return (
-    <div className="landing">
-      <div className="navBar flex justify-between items-center bg-grey-400 m-7 p-4 rounded-3xl">
+    <div className="h-screen pt-5 px-4 m-auto max-w-7xl">
+      <div className="flex justify-between items-center bg-grey-400 p-4 rounded-3xl">
         <div className="logo flex items-center space-x-2">
           <img src="./../public/icon.svg" alt="Icon" className="w-10" />
           <span className="text-white">Fitron</span>
         </div>
         <div className="btn">
-          <button className="bg-main-700 pt-2 pb-2 pr-4 pl-4 rounded-2xl text-white">
+          <NavLink
+            to={"/signup"}
+            className="bg-main-700 pt-2 pb-2 pr-4 pl-4 rounded-2xl text-white"
+          >
             Sign in
-          </button>
+          </NavLink>
         </div>
       </div>
-      <div className="landsection flex justify-evenly items-center">
-        <div className="text">
-          <p className="text-3xl text-white font-light">
+
+      <div className="landsection flex flex-col md:flex-row gap-10 items-center justify-between mt-10">
+        <div className="flex-1 min-w-90 text-center">
+          <p className="text-3xl text-white font-light mb-2">
             Let’s crush those goals!
           </p>
-          <p className="text-white pl-15 pt-2 text-2xl font-light">
+          <p className="text-white text-2xl font-light mb-2">
             {" "}
             Welcome to Fito
           </p>
-          <p className="text-main-850 text-2xl ">where sweat meets success.</p>
-          <p className="text-white pl-10 pt-1 font-light">
+          <p className="text-main-850 text-2xl mb-2">
+            where sweat meets success.
+          </p>
+          <p className="text-white font-light mb-6">
             Enter your details to Proceed further
           </p>
-          <button className="bg-main-800 pr-15 pl-15 pt-1 pb-1 text-white rounded-2xl ml-10 mt-1">
-            Continue →{" "}
-          </button>
+          <NavLink
+            to={"/login"}
+            className="bg-main-800 pr-15 pl-15 pt-1 pb-1 text-white rounded-2xl mt-2"
+          >
+            Continue →
+          </NavLink>
         </div>
-        <div className="imagen">
+
+        <figure className="image">
           <img
             src="./../public/landing-page.png"
             alt="image"
-            className="w-120"
+            className="w-120 object-cover"
           />
-        </div>
+        </figure>
       </div>
     </div>
   );
