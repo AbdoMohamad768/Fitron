@@ -16,34 +16,34 @@ function SignUp() {
         </h1>
 
         <LoginSignupInput
-          id={"username"}
-          type={"text"}
-          placeholder={"username"}
-          label={"Username"}
+          id="username"
+          type="text"
+          placeholder="username"
+          label="Username"
           required={true}
         />
 
         <LoginSignupInput
-          id={"email"}
-          type={"email"}
-          placeholder={"hello@example.com"}
-          label={"Email"}
+          id="email"
+          type="email"
+          placeholder="hello@example.com"
+          label="Email"
           required={true}
         />
 
         <LoginSignupInput
-          id={"password"}
-          type={"password"}
-          placeholder={"Password"}
-          label={"password"}
+          id="password"
+          type="password"
+          placeholder="Password"
+          label="password"
           required={true}
         />
 
         <LoginSignupInput
-          id={"confirm-password"}
-          type={"confirm-password"}
-          placeholder={"Confirm Password"}
-          label={"confirm-password"}
+          id="confirm-password"
+          type="password"
+          placeholder="Confirm Password"
+          label="Confirm Password"
           required={true}
         />
 
