@@ -20,7 +20,7 @@ function ResetPassword() {
         <LoginSignupInput
           id="password"
           type="password"
-          placeholder="****************"
+          placeholder="Password"
           label="Password"
           required={true}
         />
@@ -30,7 +30,7 @@ function ResetPassword() {
         <LoginSignupInput
           id="confirm-password"
           type="password"
-          placeholder="****************"
+          placeholder="Confirm Password"
           label="Confirm Password"
           required={true}
         />
