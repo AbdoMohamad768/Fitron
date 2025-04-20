@@ -1,67 +1,38 @@
-import Logo from "../../components/Logo";
+import LoginSignupButton from "../components/LoginSignupButton";
+import LoginSignupInput from "../components/LoginSignupInput";
+import Logo from "../components/Logo";
 
 const Login = () => {
   return (
     <div className="h-screen flex items-center justify-center gradient-1">
-      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-[40rem]">
+      <div className="signup-form">
         <div className="flex  items-center gap-2">
-          <Logo />
+          <Logo width={"50"} height={"50"} />
           <span className="font-bold text-3xl">Fito</span>
         </div>
-        <h2 className="text-xl font-semibold mb-4 text-center">
+        <h2 className="text-center text-2xl font-extrabold text-grey-500 mb-4">
           Log In Your Account
         </h2>
 
         <form>
           <div className="mb-4">
-            <label htmlFor="username" className="block text-gray-700 mb-2">
-              Username or Email
-            </label>
-            <input
-              type="text"
-              id="username"
-              placeholder="hello@example.com"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            <LoginSignupInput
+              id={"username"}
+              type={"text"}
+              placeholder={"hello@example.com"}
+              label={"Username or Email"}
+              required={true}
             />
           </div>
 
           <div className="mb-3">
-            <label htmlFor="password" className="block text-gray-700 mb-2">
-              Password
-            </label>
-            <div className="relative">
-              <input
-                type="password"
-                id="password"
-                placeholder="••••••••••••"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-              />
-              <button
-                type="button"
-                className="absolute right-3 top-1/2 transform -translate-y-1/2"
-              >
-                <svg
-                  className="w-5 h-5 text-gray-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-              </button>
-            </div>
+            <LoginSignupInput
+              id={"password"}
+              type={"password"}
+              placeholder={"Password"}
+              label={"password"}
+              required={true}
+            />
           </div>
 
           <a className="text-green-400">Forgot passowrd</a>
@@ -72,16 +43,10 @@ const Login = () => {
               Remember me
             </label>
           </div>
-
-          <button
-            type="submit"
-            className="w-full bg-green-500 text-white p-3 rounded-lg hover:bg-green-600 transition cursor-pointer font-bold text-2xl"
-          >
-            Log In
-          </button>
+          <LoginSignupButton type={"submit"}>Log In</LoginSignupButton>
         </form>
 
-        <p className="mt-4  text-gray-600">
+        <p className="mt-2  text-gray-600">
           Don't have an account?
           <a href="#" className="text-green-500 hover:underline">
             Sign Up

@@ -1,8 +1,8 @@
-const Logo = () => {
+const Logo = ({width,height}) => {
   return (
     <svg
-      width="50"
-      height="50"
+      width={width}
+      height={width}
       viewBox="0 0 127 118"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

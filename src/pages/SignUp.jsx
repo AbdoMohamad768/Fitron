@@ -1,10 +1,15 @@
-import LoginSignupInput from "../../components/LoginSignupInput";
+import LoginSignupButton from "../components/LoginSignupButton";
+import LoginSignupInput from "../components/LoginSignupInput";
+import Logo from "../components/Logo";
 
 function SignUp() {
   return (
     <main>
       <form className="signup-form">
-        <div>{/* <Logo /> */}</div>
+        <div className="flex  items-center gap-2">
+          <Logo width={"50"} height={"50"} />
+          <span className="font-bold text-3xl">Fito</span>
+        </div>
         <h1 className="text-center text-2xl font-extrabold text-grey-500 mb-4">
           Sign Up Your Accout
         </h1>
@@ -41,13 +46,8 @@ function SignUp() {
           required={true}
         />
 
-        <button
-          type="submit"
-          className="bg-main-750 text-xl font-extrabold px-3 py-2 text-white rounded-xl w-full mt-4 mb-1"
-        >
-          Sign Up
-        </button>
-        <p className=" text-grey-500 font-semibold">
+        <LoginSignupButton type={"submit"}>Sign Up</LoginSignupButton>
+        <p className=" mt-2  text-gray-600">
           Already have an account?{" "}
           <a href="/login" className="text-main-750">
             Login
