@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-:root {}
+:root {
+}
 
 @theme {
   /* Green Color */
@@ -20,38 +21,37 @@
   --color-black-900: #000000;
   --color-black-800: #212738;
   --color-black-icon-text-700: #212738;
-  --color-black-icon-500: #4D5260;
-  --color-black-text-400: #878A94;
+  --color-black-icon-500: #4d5260;
+  --color-black-text-400: #878a94;
   /* White Color */
   --color-white-900: #ffffff;
-  --color-white-table-800: #FFFCFB;
-
+  --color-white-table-800: #fffcfb;
 
   /* Table */
-  --color-head-blue-900: #F3FAFF;
-  --color-blue-600: #CEE9FF;
-  --color-red-600: #FED5D2;
+  --color-head-blue-900: #f3faff;
+  --color-blue-600: #cee9ff;
+  --color-red-600: #fed5d2;
 
-  --color-circle-icon-blue: #CEE9FF;
-  --color-circle-icon-green: #DAF17E;
-  --color-circle-icon-yellow: #FFF080;
+  --color-circle-icon-blue: #cee9ff;
+  --color-circle-icon-green: #daf17e;
+  --color-circle-icon-yellow: #fff080;
 
   /* Dashboard */
-  --color-icon-red: #FF285C;
-  --color-icon-red-stroke: #FFC3D2;
-  --color-blue: #1EA7C5;
-  --color-icon-blue-stroke: #EEFCFF;
-  --color-orange: #FF9432;
+  --color-icon-red: #ff285c;
+  --color-icon-red-stroke: #ffc3d2;
+  --color-blue: #1ea7c5;
+  --color-icon-blue-stroke: #eefcff;
+  --color-orange: #ff9432;
   --color-icon-green-stroke: rgba(255, 148, 50, 26%);
-  --color-icon-green-stroke: #C0FF86;
-  --color-yoga: #C046D3;
+  --color-icon-green-stroke: #c0ff86;
+  --color-yoga: #c046d3;
 
   /* Shadow */
   --shadow-custom-1: 32px 31px 83px rgba(0, 0, 0, 0.25);
   --shadow-notification: 15px 20px 50px rgba(0, 0, 0, 0.45);
   --shadow-add-exersices-right: 23px 31px 90px rgba(0, 0, 0, 0.45);
-  --shadow-add-exersices-left: -45px 20px 45px rgba(0, 0, 0, 0.20);
-  --shadow-green-custom-1: 0px 0px 10px 5px rgba(110, 197, 30, 0.40);
+  --shadow-add-exersices-left: -45px 20px 45px rgba(0, 0, 0, 0.2);
+  --shadow-green-custom-1: 0px 0px 10px 5px rgba(110, 197, 30, 0.4);
   --shadow-red-custom-1: 0px 0px 10px rgba(255, 40, 92, 70%);
   --shadow-blue-custom-1: 0px 0px 10px rgba(30, 167, 197, 70%);
   --shadow-orange-custom-1: 0px 0px 10px rgba(255, 148, 50, 70%);
@@ -59,28 +59,36 @@
 }
 
 .gradient-1 {
-  background-image: linear-gradient(to bottom left,
-      var(--color-main-700) 22%,
-      var(--color-main-300) 99%);
+  background-image: linear-gradient(
+    to bottom left,
+    var(--color-main-700) 22%,
+    var(--color-main-300) 99%
+  );
 }
 
 .gradient-2 {
-  background-image: linear-gradient(to right,
-      var(--color-main-700),
-      var(--color-grey-200));
+  background-image: linear-gradient(
+    to right,
+    var(--color-main-700),
+    var(--color-grey-200)
+  );
 }
 
 main {
   height: 100vh;
-  background-image: linear-gradient(to bottom left,
-      var(--color-main-700) 22%,
-      var(--color-main-300) 99%);
+  background-image: linear-gradient(
+    to bottom left,
+    var(--color-main-700) 22%,
+    var(--color-main-300) 99%
+  );
 }
 
 #root {
-  background-image: linear-gradient(to right,
-      var(--color-main-700),
-      var(--color-grey-200));
+  background-image: linear-gradient(
+    to right,
+    var(--color-main-700),
+    var(--color-grey-200)
+  );
 }
 
 .signup-form,
@@ -89,4 +97,5 @@ main {
   @apply w-md h-fit shadow-custom-1 rounded-lg p-8 bg-grey-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white;
 }
 
-.test {}
+.test {
+}

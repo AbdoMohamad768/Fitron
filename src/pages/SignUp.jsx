@@ -1,16 +1,14 @@
 import { NavLink } from "react-router";
 import LoginSignupInput from "./../components/LoginSignupInput";
 import LoginSignupButton from "../components/LoginSignupButton";
-import Logo from "../components/Logo";
+import LogoButton from "../components/LogoButton";
 
 function SignUp() {
   return (
     <main>
       <form className="signup-form">
-        <div className="flex  items-center gap-2">
-          <Logo width={"50"} height={"50"} />
-          <span className="font-bold text-3xl">Fito</span>
-        </div>
+        <LogoButton />
+
         <h1 className="text-center text-2xl font-extrabold text-grey-500 mb-4">
           Sign Up Your Accout
         </h1>

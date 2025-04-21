@@ -1,16 +1,14 @@
 import { NavLink } from "react-router";
 import LoginSignupButton from "../components/LoginSignupButton";
 import LoginSignupInput from "../components/LoginSignupInput";
-import Logo from "../components/Logo";
+import LogoButton from "../components/LogoButton";
 
 const Login = () => {
   return (
     <main className="h-screen flex items-center justify-center gradient-1">
       <div className="login-form">
-        <div className="flex items-center gap-2">
-          <Logo width={"50"} height={"50"} />
-          <span className="font-bold text-3xl">Fito</span>
-        </div>
+        <LogoButton />
+
         <h2 className="text-center text-2xl font-extrabold text-grey-500 mb-4">
           Log In Your Account
         </h2>

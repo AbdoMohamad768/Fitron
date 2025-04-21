@@ -1,11 +1,9 @@
-import { NavLink, useNavigate } from "react-router";
+import { NavLink } from "react-router";
 import Logo from "../components/Logo";
 import LoginSignupInput from "../components/LoginSignupInput";
 import LoginSignupButton from "../components/LoginSignupButton";
 
 function ResetPassword() {
-  const navigate = useNavigate();
-
   return (
     <>
       <div className="flex items-center gap-2 mb-4">
