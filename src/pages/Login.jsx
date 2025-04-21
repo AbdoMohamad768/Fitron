@@ -1,11 +1,13 @@
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import LoginSignupButton from "../components/LoginSignupButton";
 import LoginSignupInput from "../components/LoginSignupInput";
 import LogoButton from "../components/LogoButton";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   return (
-    <main className="h-screen flex items-center justify-center gradient-1">
+    <main className="form h-screen flex items-center justify-center gradient-1">
       <div className="login-form">
         <LogoButton />
 
@@ -44,7 +46,9 @@ const Login = () => {
               Remember me
             </label>
           </div>
-          <LoginSignupButton type={"submit"}>Log In</LoginSignupButton>
+          <LoginSignupButton onClick={() => navigate("/app")} type={"submit"}>
+            Log In
+          </LoginSignupButton>
         </form>
 
         <p className="mt-4  text-gray-600">

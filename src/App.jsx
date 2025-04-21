@@ -8,6 +8,8 @@ import RecoveryCode from "./pages/RecoveryCode";
 import ResetPassword from "./pages/ResetPassword";
 import PageNotFound from "./pages/PageNotFound";
 import Recovery from "./pages/Recovery";
+import Dashboard from "./pages/Dashboard";
+import AppLayout from "./pages/AppLayout";
 
 function App() {
   return (
@@ -22,6 +24,11 @@ function App() {
           <Route path="confirm-email" element={<ConfirmEmail />} />
           <Route path="recovery-code" element={<RecoveryCode />} />
           <Route path="reset-password" element={<ResetPassword />} />
+        </Route>
+
+        <Route path="/app" element={<AppLayout />}>
+          <Route index element={<Navigate replace to="dashboard" />} />
+          <Route path="dashboard" element={<Dashboard />} />
         </Route>
 
         <Route path="*" element={<PageNotFound />} />

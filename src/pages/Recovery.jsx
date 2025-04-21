@@ -2,7 +2,7 @@ import { Outlet } from "react-router";
 
 function Recovery() {
   return (
-    <main>
+    <main className="form">
       <div className="recovery-form">
         <Outlet />
       </div>

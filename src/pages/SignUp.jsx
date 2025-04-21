@@ -5,7 +5,7 @@ import LogoButton from "../components/LogoButton";
 
 function SignUp() {
   return (
-    <main>
+    <main className="form">
       <form className="signup-form">
         <LogoButton />
 

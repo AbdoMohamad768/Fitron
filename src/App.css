@@ -74,7 +74,7 @@
   );
 }
 
-main {
+main.form {
   height: 100vh;
   background-image: linear-gradient(
     to bottom left,
@@ -84,11 +84,11 @@ main {
 }
 
 #root {
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to right,
     var(--color-main-700),
     var(--color-grey-200)
-  );
+  ); */
 }
 
 .signup-form,
