@@ -1,16 +1,14 @@
 import { NavLink } from "react-router-dom";
-import { Logo } from "./Logo";
+import Logo from "./Logo";
 
 const Sidebar = () => {
     return (
         <div className="h-screen w-64 bg-grey-200 text-white flex flex-col p-4">
-            {/* Logo Section */}
             <div className="flex items-center mb-8">
                 <Logo width="40" />
                 <span className="ml-2 text-xl font-semibold">Fitron</span>
             </div>
 
-            {/* Navigation Links */}
             <nav className="flex flex-col gap-4">
                 <NavLink
                     to="/app/dashboard"
