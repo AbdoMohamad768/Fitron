@@ -2,7 +2,7 @@ const Header = () => {
   return (
     <div className="flex justify-between bg-[#F6F6F6] shadow-sm p-4 items-center">
       <div>
-        <h2 className="text-4xl font-semibold">Workout Plan</h2>
+        <h2 className="text-4xl font-semibold">Dashboard</h2>
       </div>
       <div className="flex items-center gap-3">
         <svg

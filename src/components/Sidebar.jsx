@@ -3,36 +3,60 @@ import Logo from "./Logo";
 
 const Sidebar = () => {
     return (
-        <div className="h-screen w-64 bg-grey-200 text-white flex flex-col p-4">
+        <div className="h-screen w-64 bg-white-900 text-grey-350 flex flex-col p-4">
             <div className="flex items-center mb-8">
                 <Logo width="40" />
                 <span className="ml-2 text-xl font-semibold">Fitron</span>
             </div>
 
-            <nav className="flex flex-col gap-4">
+            <nav className="flex flex-col gap-4 h-full">
                 <NavLink
                     to="/app/dashboard"
                     className={({ isActive }) =>
-                        `flex items-center gap-2 p-2 rounded-lg transition-colors ${isActive ? "bg-main-700" : "hover:bg-main-800"
+                        `flex items-center gap-2 p-2 rounded-lg transition-colors ${isActive ? "text-main-700" : "hover:bg-main-700 hover:text-white"
                         }`
                     }
                 >
-                    <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M3 9H21M9 9V21M9 9H3V21H9M15 9H21V21H15M15 9V3H9"
-                            stroke="white"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
-                    Dashboard
+                    {({ isActive }) => (
+                        <>
+                            <img
+                                src={isActive ? "/dashboard-active.png" : "/dashboard-inactive.png"}
+                                alt="Dashboard Icon"
+                                className="w-6 h-6"
+                            />
+                            <span>Dashboard</span>
+                        </>
+                    )}
+                </NavLink>
+
+                <NavLink
+                    to="/app/workout-plan"
+                    className={({ isActive }) =>
+                        `flex items-center gap-2 p-2 rounded-lg transition-colors ${isActive ? "text-main-700" : "hover:bg-main-700 hover:text-white"
+                        }`
+                    }
+                >
+                    {({ isActive }) => (
+                        <>
+                            <img
+                                src={isActive ? "/workout-plan-active.png" : "/workout-plan-inactive.png"}
+                                alt="Workout Plan Icon"
+                                className="w-6 h-6"
+                            />
+                            <span>Workout Plan</span>
+                        </>
+                    )}
+                </NavLink>
+
+                <NavLink
+                    to="/logout"
+                    className={({ isActive }) =>
+                        `flex items-center gap-2 p-2 rounded-lg transition-colors mt-auto ${isActive ? "text-main-700" : "hover:bg-main-700 hover:text-white"
+                        }`
+                    }
+                >
+                    <i className="fas fa-sign-out-alt w-6 h-4"></i>
+                    <span>Logout</span>
                 </NavLink>
             </nav>
         </div>

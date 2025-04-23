@@ -10,6 +10,7 @@ import PageNotFound from "./pages/PageNotFound";
 import Recovery from "./pages/Recovery";
 import Dashboard from "./pages/Dashboard";
 import AppLayout from "./pages/AppLayout";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function App() {
   return (
