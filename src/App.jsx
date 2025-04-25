@@ -10,8 +10,13 @@ import PageNotFound from "./pages/PageNotFound";
 import Recovery from "./pages/Recovery";
 import Dashboard from "./pages/Dashboard";
 import AppLayout from "./pages/AppLayout";
-import WorkOutPlan from "./components/WorkOutPlan";
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import ProtectedRout from "./components/ProtectedRout";
+import WorkoutPlan from "./components/WorkOutPlan";
+import Profile from "./pages/Profile";
+import ProfiledDetails from "./pages/ProfiledDetails";
+import ProfileDisplay from "./pages/ProfileDisplay";
+import ProfileInfo from "./pages/ProfileInfo";
 function App() {
   return (
     <BrowserRouter>
@@ -27,9 +32,23 @@ function App() {
           <Route path="reset-password" element={<ResetPassword />} />
         </Route>
 
-        <Route path="/app" element={<AppLayout />}>
+        <Route
+          path="/app"
+          element={
+            <ProtectedRout>
+              <AppLayout />
+            </ProtectedRout>
+          }
+        >
           <Route index element={<Navigate replace to="dashboard" />} />
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="workout-plan" element={<WorkoutPlan />} />
+          <Route path="profile" element={<Profile />}>
+            <Route index element={<Navigate replace to="info" />} />
+            <Route path="info" element={<ProfileInfo />} />
+            <Route path="display" element={<ProfileDisplay />} />
+            <Route path="details" element={<ProfiledDetails />} />
+          </Route>
         </Route>
 
         <Route path="*" element={<PageNotFound />} />

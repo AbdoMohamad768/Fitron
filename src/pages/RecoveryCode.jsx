@@ -14,7 +14,7 @@ function RecoveryCode() {
         <Logo width={"50"} height={"50"} />
         <span className="font-bold text-3xl ">Fito</span>
       </div>
-      <h2 className="text-center text-wrap text-xl font-bold text-grey-500 mb-4">
+      <h2 className="text-center text-xl font-bold text-grey-500 mb-4 text-balance">
         We have sent a recovery code to your email
       </h2>
       <form>

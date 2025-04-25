@@ -1,7 +1,60 @@
-import React from "react";
-import ListWorkOutPlan from "./ListWorkOutPlan";
+import ListWorkOutPlan from "./ListWorkoutPlan";
 
 const data = [
+  {
+    exercise_name: "Squats",
+    activity: "Run",
+    duration: "60 seconds",
+    date: "02-5-2025",
+    calories: "180 cal",
+    status: "Completed",
+    icon: "/public/Icins-WorkOut-plan/Squats.svg",
+  },
+  {
+    exercise_name: "Squats",
+    activity: "Run",
+    duration: "60 seconds",
+    date: "02-5-2025",
+    calories: "180 cal",
+    status: "Completed",
+    icon: "/public/Icins-WorkOut-plan/Squats.svg",
+  },
+  {
+    exercise_name: "Squats",
+    activity: "Run",
+    duration: "60 seconds",
+    date: "02-5-2025",
+    calories: "180 cal",
+    status: "Completed",
+    icon: "/public/Icins-WorkOut-plan/Squats.svg",
+  },
+  {
+    exercise_name: "Squats",
+    activity: "Run",
+    duration: "60 seconds",
+    date: "02-5-2025",
+    calories: "180 cal",
+    status: "Completed",
+    icon: "/public/Icins-WorkOut-plan/Squats.svg",
+  },
+  {
+    exercise_name: "Squats",
+    activity: "Run",
+    duration: "60 seconds",
+    date: "02-5-2025",
+    calories: "180 cal",
+    status: "Completed",
+    icon: "/public/Icins-WorkOut-plan/Squats.svg",
+  },
+  {
+    exercise_name: "Squats",
+    activity: "Run",
+    duration: "60 seconds",
+    date: "02-5-2025",
+    calories: "180 cal",
+    status: "Completed",
+    icon: "/public/Icins-WorkOut-plan/Squats.svg",
+  },
   {
     exercise_name: "Squats",
     activity: "Run",
@@ -112,48 +165,28 @@ const data = [
   },
 ];
 
-const WorkOutPlan = () => {
+const WorkoutPlan = () => {
   return (
-    <div className="mr-12 ml-12 mt-5 h-sce">
-      <div className="flex justify-between ">
+    <div className="h-full min-w-160.5 flex flex-col">
+      <div className="flex justify-between items-center">
         <div className="relative flex gap-2">
-          
-          <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-            <svg
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M10.875 3.75C6.93997 3.75 3.75 6.93997 3.75 10.875C3.75 14.81 6.93997 18 10.875 18C14.81 18 18 14.81 18 10.875C18 6.93997 14.81 3.75 10.875 3.75ZM2.25 10.875C2.25 6.11154 6.11154 2.25 10.875 2.25C15.6385 2.25 19.5 6.11154 19.5 10.875C19.5 15.6385 15.6385 19.5 10.875 19.5C6.11154 19.5 2.25 15.6385 2.25 10.875Z"
-                fill="#4D5260"
-              />
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M15.9134 15.9134C16.2063 15.6205 16.6812 15.6205 16.9741 15.9134L21.5303 20.4697C21.8232 20.7626 21.8232 21.2374 21.5303 21.5303C21.2374 21.8232 20.7626 21.8232 20.4697 21.5303L15.9134 16.9741C15.6205 16.6812 15.6205 16.2063 15.9134 15.9134Z"
-                fill="#4D5260"
-              />
-            </svg>
+          <span className="absolute text-grey-350 inset-y-0 left-0 flex items-center pl-3">
+            <i className="fa-solid fa-magnifying-glass"></i>
           </span>
 
           <input
             type="text"
             placeholder="Search for exercise"
-            className=" pl-10 pr-4 py-2 rounded-full bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 text-[10px] md:text-sm lg:text-xl"
+            className="pl-10 pr-4 py-2 rounded-full bg-gray-100 text-gray-700 focus:outline-none focus:ring-1 focus:ring-main-300 text-sm"
           />
 
-          <select className="pl-2 pt-2 pb-2 rounded-full bg-gray-100 text-gray-700 text-[10px] md:text-sm lg:text-xl">
+          <select className="pl-2 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-1 focus:ring-main-300 text-gray-700 text-sm">
             <option value="">Status</option>
             <option value="">Active</option>
             <option value="">InActive</option>
           </select>
 
-          <select className="pl-2 pt-2 pb-2 rounded-full bg-gray-100 text-gray-700 text-[10px] md:text-sm lg:text-xl">
+          <select className="pl-2 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-1 focus:ring-main-300 text-gray-700 text-sm">
             <option value="">This Week</option>
             <option value="">This Month</option>
             <option value="">This yeer</option>
@@ -161,14 +194,14 @@ const WorkOutPlan = () => {
         </div>
 
         <div>
-          <button className="bg-main-700 rounded-4xl pr-3 pl-3 cursor-pointer pt-2 pb-2 text-grey-50 text-[10px] md:text-sm lg:text-xl">
+          <button className="bg-main-700 rounded-4xl pr-3 pl-3 cursor-pointer pt-2 pb-2 text-grey-50 text-sm">
             + Add Exercise
           </button>
         </div>
       </div>
 
       <div className="mt-7 bg-blue-200 pt-1.5 pb-1.5 px-4 rounded-2xl">
-        <ul className="flex text-gray-600 font-semibold text-[8px] md:text-sm 2xl:gap-55 lg:gap-20 md:gap-7 gap-7">
+        <ul className="flex text-gray-600 font-semibold text-sm gap-7">
           <li className="basis-2/6">Exercise Name</li>
           <li className="basis-1/6">Activity</li>
           <li className="basis-1/6">Duration</li>
@@ -179,15 +212,15 @@ const WorkOutPlan = () => {
       </div>
 
       <div>
-        {data.map((item) => (
-          <ListWorkOutPlan key={item.id} item={item} />
+        {data.map((item, index) => (
+          <ListWorkOutPlan key={index} item={item} />
         ))}
       </div>
-      
-      <div className="mt-8 ml-1 flex justify-between">
-        <div className="">
+
+      <div className="mt-4 ml-1 grow flex items-end justify-between">
+        <div>
           <span className="text-grey-350 pr-1.5 text-sm">Showing</span>
-          <select className="pl-2 pr-2 pt-2 pb-2 rounded-full bg-gray-100 text-gray-700 text-sm">
+          <select className="pl-2 py-2 rounded-full bg-gray-100 text-gray-700 text-sm">
             {Array.from({ length: data.length }, (_, index) => (
               <option key={index} value={index + 1}>
                 {index + 1}
@@ -196,7 +229,8 @@ const WorkOutPlan = () => {
           </select>
           <span className="text-grey-350 ml-3 text-sm">out of 28</span>
         </div>
-        <div className="flex gap-2 ">
+
+        <div className="flex gap-2">
           <svg
             width="30"
             height="30"
@@ -206,8 +240,8 @@ const WorkOutPlan = () => {
           >
             <rect width="30" height="30" rx="15" fill="#EFEFF0" />
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M17.0852 19.8977C17.3049 19.6781 17.3049 19.3219 17.0852 19.1023L12.983 15L17.0852 10.8977C17.3049 10.6781 17.3049 10.3219 17.0852 10.1023C16.8656 9.88258 16.5094 9.88258 16.2898 10.1023L11.7898 14.6023C11.5701 14.8219 11.5701 15.1781 11.7898 15.3977L16.2898 19.8977C16.5094 20.1174 16.8656 20.1174 17.0852 19.8977Z"
               fill="#BCBEC3"
             />
@@ -231,8 +265,8 @@ const WorkOutPlan = () => {
           >
             <rect width="30" height="30" rx="15" fill="#EFEFF0" />
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M12.9148 19.8977C12.6951 19.6781 12.6951 19.3219 12.9148 19.1023L17.017 15L12.9148 10.8977C12.6951 10.6781 12.6951 10.3219 12.9148 10.1023C13.1344 9.88258 13.4906 9.88258 13.7102 10.1023L18.2102 14.6023C18.4299 14.8219 18.4299 15.1781 18.2102 15.3977L13.7102 19.8977C13.4906 20.1174 13.1344 20.1174 12.9148 19.8977Z"
               fill="#212738"
             />
@@ -243,4 +277,4 @@ const WorkOutPlan = () => {
   );
 };
 
-export default WorkOutPlan;
+export default WorkoutPlan;

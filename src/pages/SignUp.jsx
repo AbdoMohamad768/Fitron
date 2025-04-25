@@ -5,11 +5,11 @@ import LogoButton from "../components/LogoButton";
 
 function SignUp() {
   return (
-    <main className="form">
+    <main className="h-screen flex items-center justify-center gradient-1">
       <form className="signup-form">
         <LogoButton />
 
-        <h1 className="text-center text-2xl font-extrabold text-grey-500 mb-4">
+        <h1 className="text-center text-xl sm:text-2xl font-extrabold text-grey-500 mb-4">
           Sign Up Your Accout
         </h1>
 

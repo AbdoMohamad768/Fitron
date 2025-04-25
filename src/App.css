@@ -10,12 +10,13 @@
   --color-main-750: #73bc31;
   --color-main-700: #6ec51e;
   --color-main-300: #a5c492;
+  --color-main-200: #f3f7ef;
   /* Grey Color */
-  --color-grey-500: #414141;
-  --color-grey-400: #3d424b;
-  --color-grey-350: #969ba0;
-  --color-grey-300: #afabab88;
   --color-grey-200: #353540;
+  --color-grey-400: #3d424b;
+  --color-grey-500: #414141;
+  --color-grey-300: #afabab88;
+  --color-grey-350: #969ba0;
   --color-grey-50: #efefef;
   /* Black Color */
   --color-black-900: #000000;
@@ -74,28 +75,30 @@
   );
 }
 
-main.form {
-  height: 100vh;
-  background-image: linear-gradient(
-    to bottom left,
-    var(--color-main-700) 22%,
-    var(--color-main-300) 99%
-  );
-}
-
-#root {
-  /* background-image: linear-gradient(
-    to right,
-    var(--color-main-700),
-    var(--color-grey-200)
-  ); */
-}
-
 .signup-form,
 .login-form,
 .recovery-form {
-  @apply w-md h-fit shadow-custom-1 rounded-lg p-8 bg-grey-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white;
+  @apply w-md h-fit shadow-custom-1 rounded-lg p-8 mx-4 bg-grey-50;
 }
 
 .test {
+}
+
+.app-layout-header {
+  @apply flex justify-between items-center m-3 rounded-xl bg-gray-50 shadow-sm p-4 col-span-2 sm:row-span-1 sm:col-span-1;
+}
+
+.sidebar {
+  @apply absolute -left-[240px] top-3 bottom-3 bg-gray-50 text-grey-350 rounded-xl py-4 w-60 flex flex-col items-center transition duration-500 sm:relative sm:row-span-2 sm:m-3 sm:mr-0 sm:left-0 sm:top-0 sm:bottom-0 sm:translate-x-0 sm:w-fit lg:w-60 z-50;
+
+  /* 
+    absolute -left-full top-3 bottom-3 bg-gray-50 text-grey-350 rounded-xl p-4 w-60 flex flex-col items-center sm:relative sm:row-span-2 sm:mr-3 sm:w-fit xl:w-60;
+  */
+}
+
+.sidebar-links-list {
+}
+
+.sidebar-link-icon {
+  @apply text-xl w-11 h-11 rounded-full bg-white flex justify-center items-center md:bg-transparent;
 }

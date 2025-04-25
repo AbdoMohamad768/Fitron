@@ -20,7 +20,7 @@ function Landing() {
         </header>
 
         <main className="landsection flex flex-col md:flex-row gap-10 items-center justify-between mt-10">
-          <div className="flex-1 min-w-90 text-center">
+          <div className="flex-1 text-balance text-center">
             <p className="text-3xl text-white font-light mb-2">
               Let’s crush those goals!
             </p>

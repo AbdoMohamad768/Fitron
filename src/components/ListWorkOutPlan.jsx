@@ -1,8 +1,6 @@
-import React from "react";
-
-const ListWorkOutPlan = ({ item }) => {
+const ListWorkoutPlan = ({ item }) => {
   return (
-    <ul className="flex items-center px-3 py-2 bg-white rounded-xl text-[10px] mt-2 sm:text-sm text-gray-700 2xl:gap-50 lg:gap-18 md:gap-7 gap-3 ">
+    <ul className="flex items-center px-3 py-2 bg-white rounded-xl mt-2 text-sm text-gray-700 gap-3 ">
       <li className="flex items-center gap-2 basis-2/6">
         <img className="w-6 h-6" src={item.icon} alt="" />
         <span className="whitespace-nowrap">{item.exercise_name}</span>
@@ -30,4 +28,4 @@ const ListWorkOutPlan = ({ item }) => {
   );
 };
 
-export default ListWorkOutPlan;
+export default ListWorkoutPlan;

@@ -2,7 +2,7 @@ import { Outlet } from "react-router";
 
 function Recovery() {
   return (
-    <main className="form">
+    <main className="h-screen flex items-center justify-center gradient-1">
       <div className="recovery-form">
         <Outlet />
       </div>

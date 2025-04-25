@@ -7,8 +7,8 @@ const Login = () => {
   const navigate = useNavigate();
 
   return (
-    <main className="form h-screen flex items-center justify-center gradient-1">
-      <div className="login-form">
+    <div className="h-screen flex items-center justify-center gradient-1">
+      <main className="login-form">
         <LogoButton />
 
         <h2 className="text-center text-2xl font-extrabold text-grey-500 mb-4">
@@ -51,15 +51,15 @@ const Login = () => {
           </LoginSignupButton>
         </form>
 
-        <p className="mt-4  text-gray-600">
+        <p className="mt-4 text-gray-600">
           Don&apos;t have an account?
           <NavLink to="/signup" className="text-green-500 hover:underline">
             {" "}
             Sign Up
           </NavLink>
         </p>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 };
 

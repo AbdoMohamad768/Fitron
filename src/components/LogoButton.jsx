@@ -1,16 +1,26 @@
 import { useNavigate } from "react-router";
 import Logo from "./Logo";
 
-function LogoButton() {
+function LogoButton({ size = "lg", extraClasses = "" }) {
   const navigate = useNavigate();
 
   return (
     <button
       onClick={() => navigate("/")}
-      className="flex items-center gap-2 cursor-pointer"
+      className={`flex items-center gap-2 cursor-pointer ${extraClasses}`}
     >
-      <Logo width={"50"} height={"50"} />
-      <span className="font-bold text-3xl">Fitron</span>
+      <Logo width={size === "lg" ? "50" : size === "md" ? "40" : "30"} />
+      <span
+        className={`${
+          size === "lg"
+            ? "font-bold text-3xl"
+            : size === "md"
+            ? "font-normall text-xl"
+            : "font- text-lg"
+        } sm:hidden md:block`}
+      >
+        Fitron
+      </span>
     </button>
   );
 }
