@@ -2,9 +2,32 @@ import { NavLink, useNavigate } from "react-router";
 import LoginSignupButton from "../components/LoginSignupButton";
 import LoginSignupInput from "../components/LoginSignupInput";
 import LogoButton from "../components/LogoButton";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../store/slices/authSlice";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
+  const [email, setEmail] = useState("test@test.com");
+  const [password, setPassword] = useState("123456");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    dispatch(login({ email, password }));
+  }
+
+  useEffect(
+    function () {
+      if (user.status === "success") {
+        navigate("/app/dashboard");
+      }
+    },
+    [user, navigate]
+  );
 
   return (
     <div className="h-screen flex items-center justify-center gradient-1">
@@ -15,24 +38,30 @@ const Login = () => {
           Log In Your Account
         </h2>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <LoginSignupInput
+              disabled={user.status === "loading"}
               id={"username"}
               type={"text"}
               placeholder={"hello@example.com"}
               label={"Username or Email"}
               required={true}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
           <div className="mb-3">
             <LoginSignupInput
+              disabled={user.status === "loading"}
               id={"password"}
               type={"password"}
               placeholder={"Password"}
               label={"password"}
               required={true}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
@@ -46,7 +75,10 @@ const Login = () => {
               Remember me
             </label>
           </div>
-          <LoginSignupButton onClick={() => navigate("/app")} type={"submit"}>
+          <LoginSignupButton
+            disabled={user.status === "loading"}
+            type={"submit"}
+          >
             Log In
           </LoginSignupButton>
         </form>

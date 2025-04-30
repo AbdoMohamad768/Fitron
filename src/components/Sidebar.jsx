@@ -1,4 +1,7 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../store/slices/authSlice";
+import { useEffect } from "react";
 import LogoButton from "./LogoButton";
 
 const sidebarLinks = [
@@ -20,6 +23,10 @@ const sidebarLinks = [
 ];
 
 const Sidebar = ({ sidebarOpen, onCloseSidebar }) => {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <nav
       className={`sidebar ${
@@ -48,12 +55,10 @@ const Sidebar = ({ sidebarOpen, onCloseSidebar }) => {
           ))}
         </ul>
 
-        <button className="px-4 py-2 flex gasp-2 items-center justify-center w-full sm:justify-start cursor-pointer">
-          <span className="sidebar-link-icon">
-            <i className="fas fa-sign-out-alt"></i>
-          </span>
-          <span className="sm:hidden md:block">Logout</span>
-        </button>
+        <LogoutButton
+          disabled={user.status === "loading"}
+          onClick={() => dispatch(logout())}
+        />
       </div>
     </nav>
   );
@@ -61,12 +66,34 @@ const Sidebar = ({ sidebarOpen, onCloseSidebar }) => {
 
 function SidebarLink({ to, icon, label }) {
   return (
-    <li className="px-4 py-2">
-      <NavLink to={to} className="flex gap-2 items-center w-full">
+    <li className="">
+      <NavLink
+        to={to}
+        className="sidebar-link flex px-4 py-2 gap-2 items-center w-full hover:bg-white hover:text-main-700 rounded-xl"
+      >
         <span className="sidebar-link-icon">{icon}</span>
         <span className="sm:hidden md:block">{label}</span>
       </NavLink>
     </li>
+  );
+}
+
+function LogoutButton({ onClick, disabled = false }) {
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={`px-4 py-2 flex gasp-2 items-center justify-center w-full sm:justify-start rounded-xl ${
+        disabled === "loading"
+          ? "cursor-not-allowed hover:bg-red-100"
+          : "cursor-pointer hover:bg-red-500 hover:text-white"
+      }`}
+    >
+      <span className="sidebar-link-icon">
+        <i className="fas fa-sign-out-alt"></i>
+      </span>
+      <span className="sm:hidden md:block">Logout</span>
+    </button>
   );
 }
 

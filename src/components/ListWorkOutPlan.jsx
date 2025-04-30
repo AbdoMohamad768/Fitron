@@ -1,8 +1,33 @@
+const workoutTypeIcons = {
+  running: <i className="fa-solid fa-person-running"></i>,
+  cycling: <i className="fa-solid fa-person-biking"></i>,
+  swimming: <i className="fa-solid fa-person-swimming"></i>,
+  walking: <i className="fa-solid fa-person-walking"></i>,
+  gym: <i className="fa-solid fa-dumbbell"></i>,
+};
+
 const ListWorkoutPlan = ({ item }) => {
   return (
     <ul className="flex items-center px-3 py-2 bg-white rounded-xl mt-2 text-sm text-gray-700 gap-3 ">
       <li className="flex items-center gap-2 basis-2/6">
-        <img className="w-6 h-6" src={item.icon} alt="" />
+        <span
+          className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold ${
+            item.activity === "running"
+              ? "bg-circle-icon-blue"
+              : item.activity === "cycling"
+              ? "bg-circle-icon-green"
+              : item.activity === "swimming"
+              ? "bg-circle-icon-yellow"
+              : item.activity === "walking"
+              ? "bg-circle-icon-orange"
+              : item.activity === "gym"
+              ? "bg-circle-icon-red textwh"
+              : ""
+          }`}
+        >
+          {workoutTypeIcons[item.activity]}
+        </span>
+
         <span className="whitespace-nowrap">{item.exercise_name}</span>
       </li>
       <li className="basis-1/6 ">{item.activity}</li>

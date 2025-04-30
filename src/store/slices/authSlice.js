@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { login as loginAPI, logout as logoutAPI } from "../../api/authAPI";
 
-export const fetchUser = createAsyncThunk(
-  "auth/fetchUser",
-  async function () {}
-);
+export const login = createAsyncThunk("auth/login", loginAPI);
+
+export const logout = createAsyncThunk("auth/logout", logoutAPI);
 
 const initialState = {
   user: {},
-  status: null,
+  status: "idle",
   error: null,
 };
 
@@ -15,28 +15,37 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login: function (state, action) {},
-    logout: function (state, action) {
-      state = initialState;
-    },
     signup: function (state, action) {},
   },
   extraReducers: function (builder) {
     builder
-      .addCase(fetchUser.pending, function (state, action) {
+      .addCase(login.pending, function (state) {
         state.status = "loading";
       })
-      .addCase(fetchUser.fulfilled, function (state, action) {
+      .addCase(login.fulfilled, function (state, action) {
         state.status = "success";
         state.user = action.payload;
       })
-      .addCase(fetchUser.rejected, function (state, action) {
+      .addCase(login.rejected, function (state, action) {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
+
+    builder
+      .addCase(logout.pending, function (state) {
+        state.status = "loading";
+      })
+      .addCase(logout.fulfilled, function (state) {
+        state.status = "logged-out";
+        state.user = initialState.user;
+      })
+      .addCase(logout.rejected, function (state, action) {
         state.status = "failed";
         state.error = action.error.message;
       });
   },
 });
 
-export const { login, logout, signup } = authSlice.actions;
+export const { signup } = authSlice.actions;
 
 export default authSlice.reducer;

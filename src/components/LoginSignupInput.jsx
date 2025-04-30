@@ -1,4 +1,13 @@
-function LoginSignupInput({ id, label, type, placeholder, required }) {
+function LoginSignupInput({
+  id,
+  label,
+  type,
+  placeholder,
+  required,
+  value,
+  onChange,
+  disabled = false,
+}) {
   return (
     <div className="mb-4">
       <label htmlFor={id} className="block text-gray-700 mb-2">
@@ -11,7 +20,14 @@ function LoginSignupInput({ id, label, type, placeholder, required }) {
           name={id}
           placeholder={placeholder}
           required={required}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          className={`w-full p-3 border border-gray-300 rounded-lg focus:outline-none ${
+            disabled
+              ? "cursor-not-allowed bg-grey-300"
+              : "focus:ring-1 focus:ring-main-750"
+          }`}
         />
       </div>
     </div>

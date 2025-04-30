@@ -15,8 +15,8 @@
   --color-grey-200: #353540;
   --color-grey-400: #3d424b;
   --color-grey-500: #414141;
-  --color-grey-300: #afabab88;
   --color-grey-350: #969ba0;
+  --color-grey-300: #afabab88;
   --color-grey-50: #efefef;
   /* Black Color */
   --color-black-900: #000000;
@@ -36,6 +36,8 @@
   --color-circle-icon-blue: #cee9ff;
   --color-circle-icon-green: #daf17e;
   --color-circle-icon-yellow: #fff080;
+  --color-circle-icon-orange: #ffa34f;
+  --color-circle-icon-red: #ffa0a0;
 
   /* Dashboard */
   --color-icon-red: #ff285c;
@@ -101,4 +103,9 @@
 
 .sidebar-link-icon {
   @apply text-xl w-11 h-11 rounded-full bg-white flex justify-center items-center md:bg-transparent;
+}
+
+.sidebar-link.active {
+  background-color: var(--color-main-700);
+  color: white;
 }

@@ -1,9 +1,14 @@
-function LoginSignupButton({ children, type, onClick }) {
+function LoginSignupButton({ children, type, onClick, disabled = false }) {
   return (
     <button
       type={type}
       onClick={onClick}
-      className="bg-main-750 w-full  text-white p-3 rounded-lg hover:bg-green-600 transition cursor-pointer font-bold text-2xl"
+      disabled={disabled}
+      className={` w-full text-white p-3 rounded-lg transition font-bold text-2xl ${
+        disabled
+          ? "cursor-not-allowed bg-main-300"
+          : "cursor-pointer bg-main-750 hover:bg-green-600"
+      }`}
     >
       {children}
     </button>

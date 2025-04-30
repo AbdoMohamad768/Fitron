@@ -3,7 +3,7 @@ import ListWorkOutPlan from "./ListWorkoutPlan";
 const data = [
   {
     exercise_name: "Squats",
-    activity: "Run",
+    activity: "running",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -12,7 +12,7 @@ const data = [
   },
   {
     exercise_name: "Squats",
-    activity: "Run",
+    activity: "running",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -21,7 +21,7 @@ const data = [
   },
   {
     exercise_name: "Squats",
-    activity: "Run",
+    activity: "running",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -30,7 +30,7 @@ const data = [
   },
   {
     exercise_name: "Squats",
-    activity: "Run",
+    activity: "running",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -39,7 +39,7 @@ const data = [
   },
   {
     exercise_name: "Squats",
-    activity: "Run",
+    activity: "running",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -48,7 +48,7 @@ const data = [
   },
   {
     exercise_name: "Squats",
-    activity: "Run",
+    activity: "running",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -57,7 +57,7 @@ const data = [
   },
   {
     exercise_name: "Squats",
-    activity: "Run",
+    activity: "running",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -66,7 +66,7 @@ const data = [
   },
   {
     exercise_name: "Bench Press",
-    activity: "Gym",
+    activity: "gym",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -75,7 +75,7 @@ const data = [
   },
   {
     exercise_name: "Shoulder Press",
-    activity: "Cycle",
+    activity: "cycling",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -84,7 +84,7 @@ const data = [
   },
   {
     exercise_name: "Pull-Ups",
-    activity: "Gym",
+    activity: "gym",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -93,7 +93,7 @@ const data = [
   },
   {
     exercise_name: "Deadlifts",
-    activity: "Gym",
+    activity: "gym",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -102,7 +102,7 @@ const data = [
   },
   {
     exercise_name: "Plank",
-    activity: "Gym",
+    activity: "gym",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -111,7 +111,7 @@ const data = [
   },
   {
     exercise_name: "Running",
-    activity: "Run",
+    activity: "running",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -120,7 +120,7 @@ const data = [
   },
   {
     exercise_name: "Lunges",
-    activity: "Gym",
+    activity: "gym",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -129,7 +129,7 @@ const data = [
   },
   {
     exercise_name: "Bicep Curls",
-    activity: "Gym",
+    activity: "gym",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -138,7 +138,7 @@ const data = [
   },
   {
     exercise_name: "Cycling",
-    activity: "Cycle",
+    activity: "cycling",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -147,7 +147,7 @@ const data = [
   },
   {
     exercise_name: "Mountain Climbers",
-    activity: "Gym",
+    activity: "gym",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
@@ -156,7 +156,7 @@ const data = [
   },
   {
     exercise_name: "Yoga (Stretching)",
-    activity: "Gym",
+    activity: "gym",
     duration: "60 seconds",
     date: "02-5-2025",
     calories: "180 cal",
