@@ -47,7 +47,7 @@ function ProfileDisplay() {
       </div>
 
       <button
-        className="bg-main-700 pt-2 pb-2 pr-4  md:w-1/6 pl-4  sm:w-full rounded-2xl text-white"
+        className="bg-main-700 pt-2 pb-2 pr-4  md:w-1/6 pl-4  sm:w-full rounded-2xl text-white cursor-pointer hover:bg-[#73bc31]  trasition duration-200"
         type="submit"
       >
         Save
