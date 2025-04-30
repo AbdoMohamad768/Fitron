@@ -20,7 +20,9 @@ function AppLayout() {
       <Header onOpenSidebar={onOpenSidebar} />
 
       <main className="flex-1 p-4 m-3 mt-0 rounded-xl bg-white overflow-auto col-span-2 sm:col-span-1">
-        <Outlet />
+        <div className="container mx-auto">
+          <Outlet />
+        </div>
       </main>
     </div>
   );

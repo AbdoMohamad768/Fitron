@@ -3,7 +3,7 @@ function Avatar({ width = "8" }) {
     <figure className="mr-3 sm:mr-2">
       <img
         className={`w-${width} rounded-full`}
-        src="../../public/default-user.jpg"
+        src="/default-user.jpg"
         alt=""
       />
     </figure>

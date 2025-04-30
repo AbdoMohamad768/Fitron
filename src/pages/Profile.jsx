@@ -3,14 +3,11 @@ import ProfileTabBar from "../components/ProfileTabBar"; // Adjust the path as n
 
 function Profile() {
   return (
-    <div>
-      <div className="flex flex-col items-center">
-        {/* Tab Bar */}
-        <ProfileTabBar />
-      </div>
+    <>
+      <ProfileTabBar />
 
       <Outlet />
-    </div>
+    </>
   );
 }
 

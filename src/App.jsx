@@ -17,6 +17,7 @@ import Profile from "./pages/Profile";
 import ProfiledDetails from "./pages/ProfiledDetails";
 import ProfileDisplay from "./pages/ProfileDisplay";
 import ProfileInfo from "./pages/ProfileInfo";
+
 function App() {
   return (
     <BrowserRouter>
