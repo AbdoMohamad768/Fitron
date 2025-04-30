@@ -5,7 +5,7 @@ function ProfileInfo() {
       <div className="bg-[#E8F0E8] w-full flex flex-col sm:flex-row items-center mt-3 mb-5 gap-6 sm:gap-10 px-6 sm:px-10 py-4 rounded-3xl shadow-md">
         {/* Profile Image */}
         <img
-          src="/profile photo.png"
+          src="/default-user.jpg"
           alt="Profile"
           className="w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] lg:w-[218px] lg:h-[218px] rounded-full object-cover"
         />
@@ -21,6 +21,7 @@ function ProfileInfo() {
           </p>
         </div>
       </div>
+
       <div className="w-full flex flex-col lg:flex-row gap-4 sm:gap-5">
         {/* Column 1 */}
         <div className="flex flex-col flex-1 bg-[#E8F0E8] mb-5 gap-2 px-4 sm:px-8 py-4 sm:py-5 rounded-3xl shadow-md text-left">
