@@ -63,10 +63,7 @@ export async function signup({ email, password, firstName, lastName }) {
     throw new Error(userError.message);
   }
 
-  console.log(data.user);
-  console.log(user);
-
-  return data;
+  return { email: data.user.email, ...user };
 }
 
 export async function updateUser({

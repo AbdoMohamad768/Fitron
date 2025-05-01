@@ -20,9 +20,6 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    signup: function (state, action) {},
-  },
   extraReducers: function (builder) {
     builder
       .addCase(login.pending, function (state) {
@@ -31,8 +28,6 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, function (state, action) {
         state.status = "success";
         state.user = action.payload;
-
-        console.log(action.payload);
       })
       .addCase(login.rejected, function (state, action) {
         state.status = "failed";
@@ -55,20 +50,14 @@ const authSlice = createSlice({
     builder
       .addCase(signup.pending, function (state) {
         state.status = "loading";
-
-        console.log("pending signup");
       })
-      .addCase(signup.fulfilled, function (state) {
-        state.status = "signed-out";
-        state.user = initialState.user;
-
-        console.log("Signed up successfully");
+      .addCase(signup.fulfilled, function (state, action) {
+        state.status = "signed-up";
+        state.user = action.payload;
       })
       .addCase(signup.rejected, function (state, action) {
         state.status = "failed";
         state.error = action.error.message;
-
-        console.log("Failed to sign up", action.error.message);
       });
   },
 });

@@ -1,6 +1,16 @@
+import { useLocation } from "react-router";
 import Avatar from "./Avatar";
 
 const Header = ({ onOpenSidebar }) => {
+  let pageName = useLocation().pathname.split("/")[2];
+
+  if (pageName.includes("-")) {
+    pageName = pageName
+      .split("-")
+      .map((word) => word[0].toUpperCase() + word.substring(1))
+      .join(" ");
+  }
+
   return (
     <div className="app-layout-header">
       <div className="flex gap-2 items-center">
@@ -11,14 +21,12 @@ const Header = ({ onOpenSidebar }) => {
           <i className="fa-solid fa-bars"></i>
         </button>
 
-        <h2 className="sm:text-3xl font-semibold">Dashboard</h2>
+        <h2 className="sm:text-3xl font-semibold">
+          {pageName[0].toLocaleUpperCase() + pageName.substring(1)}
+        </h2>
       </div>
 
       <div className="flex items-center">
-        {/* <span className="mr-3 w-8 h-8 rounded-xl flex justify-center items-center bg-grey-50">
-          <i className="fa-regular fa-bell"></i>
-        </span> */}
-
         <Avatar />
 
         <span className="font-semibold mr-3 hidden sm:block">@Username</span>

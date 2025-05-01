@@ -9,7 +9,7 @@ import { login } from "../store/slices/authSlice";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const loginStatus = useSelector((state) => state.user.status);
 
   const [email, setEmail] = useState("test@test.com");
   const [password, setPassword] = useState("123456");
@@ -22,11 +22,11 @@ const Login = () => {
 
   useEffect(
     function () {
-      if (user.status === "success") {
+      if (loginStatus === "success") {
         navigate("/app/dashboard");
       }
     },
-    [user, navigate]
+    [loginStatus, navigate]
   );
 
   return (
@@ -41,7 +41,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <LoginSignupInput
-              disabled={user.status === "loading"}
+              disabled={loginStatus === "loading"}
               id={"username"}
               type={"text"}
               placeholder={"hello@example.com"}
@@ -54,7 +54,7 @@ const Login = () => {
 
           <div className="mb-3">
             <LoginSignupInput
-              disabled={user.status === "loading"}
+              disabled={loginStatus === "loading"}
               id={"password"}
               type={"password"}
               placeholder={"Password"}
@@ -76,7 +76,7 @@ const Login = () => {
             </label>
           </div>
           <LoginSignupButton
-            disabled={user.status === "loading"}
+            disabled={loginStatus === "loading"}
             type={"submit"}
           >
             Log In

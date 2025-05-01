@@ -17,7 +17,7 @@ const workoutSlice = createSlice({
   reducers: {},
   extraReducers: function (builder) {
     builder
-      .addCase(fetchWorkouts.pending, function (state, action) {
+      .addCase(fetchWorkouts.pending, function (state) {
         state.status = "loading";
       })
       .addCase(fetchWorkouts.fulfilled, function (state, action) {

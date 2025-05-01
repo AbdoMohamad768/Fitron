@@ -1,9 +1,9 @@
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import LoginSignupInput from "./../components/LoginSignupInput";
 import LoginSignupButton from "../components/LoginSignupButton";
 import LogoButton from "../components/LogoButton";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../store/slices/authSlice";
 
 function SignUp() {
@@ -13,7 +13,9 @@ function SignUp() {
   const [password, setPassword] = useState("123456");
   const [confirmPassword, setConfirmPassword] = useState("123456");
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const signupStatus = useSelector((state) => state.user.status);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -25,6 +27,15 @@ function SignUp() {
 
     dispatch(signup({ email, password, firstName, lastName }));
   }
+
+  useEffect(
+    function () {
+      if (signupStatus === "signed-up") {
+        navigate("/app/profile/details");
+      }
+    },
+    [signupStatus, navigate]
+  );
 
   return (
     <main className="h-screen flex items-center justify-center gradient-1">
