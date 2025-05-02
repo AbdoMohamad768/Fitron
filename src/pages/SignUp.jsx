@@ -55,6 +55,7 @@ function SignUp() {
             required={true}
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
+            disabled={signupStatus === "loading"}
           />
           <LoginSignupInput
             id="last-name"
@@ -64,6 +65,7 @@ function SignUp() {
             required={true}
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
+            disabled={signupStatus === "loading"}
           />
         </div>
 
@@ -75,6 +77,7 @@ function SignUp() {
           required={true}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          disabled={signupStatus === "loading"}
         />
 
         <LoginSignupInput
@@ -85,6 +88,7 @@ function SignUp() {
           required={true}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          disabled={signupStatus === "loading"}
         />
 
         <LoginSignupInput
@@ -95,9 +99,15 @@ function SignUp() {
           required={true}
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
+          disabled={signupStatus === "loading"}
         />
 
-        <LoginSignupButton type={"submit"}>Sign Up</LoginSignupButton>
+        <LoginSignupButton
+          disabled={signupStatus === "loading"}
+          type={"submit"}
+        >
+          Sign Up
+        </LoginSignupButton>
         <p className=" mt-2  text-gray-600">
           Already have an account?{" "}
           <NavLink to="/login" className="text-main-750">
