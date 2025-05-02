@@ -1,4 +1,30 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
 function ProfileInfo() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [gender, setGender] = useState("");
+  const [email, setEmail] = useState("");
+  const [region, setRegion] = useState("");
+
+  const { user, status } = useSelector((state) => state.user);
+  useEffect(() => {
+    if ((status === "success" || status === "signed-up") && user) {
+      setBirthday(user.birthday);
+      setFirstName(user.first_name);
+      setGender(user.gender);
+      setHeight(user.height);
+      setLastName(user.last_name);
+      setWeight(user.weight);
+      setEmail(user.email);
+      setRegion(user.region);
+    }
+  }, [status, user]);
+
   return (
     <div className="flex flex-col items-center">
       {/* Profile Info Section */}
@@ -11,10 +37,10 @@ function ProfileInfo() {
         />
         <div className="flex flex-col justify-center items-center sm:items-start">
           <h2 className="text-[16px] sm:text-[18px] lg:text-[20px] font-bold text-main-700 mb-2 sm:mb-3 leading-tight">
-            @Username
+            {firstName} {lastName}
           </h2>
           <p className="text-[14px] sm:text-[16px] lg:text-[20px] text-main-700 mb-2 sm:mb-3 leading-tight">
-            test@test.com
+            {email}
           </p>
           <p className="text-[14px] sm:text-[16px] lg:text-[20px] text-main-700 leading-tight">
             0123456789
@@ -30,7 +56,7 @@ function ProfileInfo() {
               FIRST NAME:
             </span>
             <span className="text-[13px] sm:text-[15px] text-main-700 font-semibold uppercase flex-1 text-right sm:text-left">
-              User
+              {firstName || `_`}
             </span>
           </div>
 
@@ -39,7 +65,7 @@ function ProfileInfo() {
               LAST NAME:
             </span>
             <span className="text-[13px] sm:text-[15px] text-main-700 font-semibold uppercase flex-1 text-right sm:text-left">
-              name
+              {lastName || `_`}
             </span>
           </div>
 
@@ -48,7 +74,7 @@ function ProfileInfo() {
               BIRTHDAY:
             </span>
             <span className="text-[13px] sm:text-[15px] text-main-700 font-semibold uppercase flex-1 text-right sm:text-left">
-              JAN 1 1970
+              {birthday || `_`}
             </span>
           </div>
 
@@ -57,7 +83,7 @@ function ProfileInfo() {
               REGION:
             </span>
             <span className="text-[13px] sm:text-[15px] text-main-700 font-semibold uppercase flex-1 text-right sm:text-left">
-              EGYPT
+              {region || `_`}
             </span>
           </div>
         </div>
@@ -69,7 +95,7 @@ function ProfileInfo() {
               GENDER:
             </span>
             <span className="text-[13px] sm:text-[15px] text-main-700 font-semibold uppercase flex-1 text-right sm:text-left">
-              MALE
+              {gender || `_`}
             </span>
           </div>
 
@@ -78,7 +104,7 @@ function ProfileInfo() {
               WEIGHT:
             </span>
             <span className="text-[13px] sm:text-[15px] text-main-700 font-semibold uppercase flex-1 text-right sm:text-left">
-              70KG
+              {weight || `_`}
             </span>
           </div>
 
@@ -87,7 +113,7 @@ function ProfileInfo() {
               HEIGHT:
             </span>
             <span className="text-[13px] sm:text-[15px] text-main-700 font-semibold uppercase flex-1 text-right sm:text-left">
-              1.8M
+              {height || `_`}
             </span>
           </div>
         </div>

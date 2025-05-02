@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 function ProfiledDetails() {
   const [imageSrc, setImageSrc] = useState("/profile photo.png");
@@ -10,6 +11,25 @@ function ProfiledDetails() {
       setImageSrc(imageUrl);
     }
   };
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [gender, setGender] = useState("");
+
+  const { user, status } = useSelector((state) => state.user);
+  useEffect(() => {
+    if ((status === "success" || status === "signed-up") && user) {
+      setBirthday(user.birthday || "");
+      setFirstName(user.first_name || "");
+      setGender(user.gender || "");
+      setHeight(user.height || "");
+      setLastName(user.last_name || "");
+      setWeight(user.weight || "");
+    }
+  }, [status, user]);
 
   return (
     <div className="bg-[#E8F0E8] w-full justify-center h-full flex flex-col sm:flex-row items-center mt-3 mb-5 gap-6 sm:gap-20 px-6 sm:px-10 py-4 rounded-3xl shadow-md">
@@ -44,12 +64,18 @@ function ProfiledDetails() {
           </div>
           <div className="flex gap-4 justify-center">
             <input
+              required
               type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               placeholder="First name"
               className="bg-white-900 w-1/2 rounded-md p-2 text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
             />
             <input
               type="text"
+              required
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
               placeholder="Last name"
               className="bg-white-900 w-1/2 rounded-md p-2 text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
             />
@@ -62,6 +88,9 @@ function ProfiledDetails() {
           </label>
           <input
             type="date"
+            required
+            value={birthday}
+            onChange={(e) => setBirthday(e.target.value)}
             className="bg-white-900 p-2 rounded-md text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
           />
         </div>
@@ -73,6 +102,9 @@ function ProfiledDetails() {
             </label>
             <input
               type="text"
+              required
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
               placeholder="70"
               className="bg-white-900 p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-main-750 "
             />
@@ -84,6 +116,9 @@ function ProfiledDetails() {
             </label>
             <input
               type="text"
+              required
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
               placeholder="1.75"
               className="bg-white-900 p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-main-750"
             />
@@ -94,12 +129,18 @@ function ProfiledDetails() {
           <h2 className="font-semibold text-base sm:text-lg md:text-xl">
             Gender
           </h2>
-          <select className="w-1/1 p-2 bg-white-900 rounded-md text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750">
+          <select
+            required
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            className="w-1/1 p-2 bg-white-900 rounded-md text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
+          >
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
         </div>
         <button
+          // onClick={handleSubmit}
           className="bg-main-700 pt-2 pb-2 pr-4  md:w-1/6 pl-4  sm:w-full rounded-2xl text-white cursor-pointer hover:bg-[#73bc31]  trasition duration-200"
           type="submit"
         >

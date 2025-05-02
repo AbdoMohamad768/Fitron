@@ -95,3 +95,42 @@ export async function updateUser({
 
   return data;
 }
+
+
+
+
+// export async function updateUser({
+//   firstName,
+//   lastName,
+//   birthday,
+//   weight,
+//   height,
+//   gender,
+// }) {
+//   const { data: { user } } = await supabase.auth.getUser();
+//   const user_id = user?.id;
+
+//   if (!user_id) {
+//     throw new Error("User ID is missing");
+//   }
+
+//   const { data, error } = await supabase
+//     .from("users")
+//     .update({
+//       first_name: firstName,
+//       last_name: lastName,
+//       birthday,
+//       gender,
+//       weight,
+//       height,
+//     })
+//     .eq("user_id", user_id)
+//     .select();
+
+//   if (error) {
+//     console.error("Error updating user data", error);
+//     throw new Error(error.message);
+//   }
+
+//   return data[0];
+// }

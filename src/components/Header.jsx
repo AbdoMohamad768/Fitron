@@ -1,5 +1,7 @@
 import { useLocation } from "react-router";
 import Avatar from "./Avatar";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const Header = ({ onOpenSidebar }) => {
   let pageName = useLocation().pathname.split("/")[2];
@@ -10,6 +12,17 @@ const Header = ({ onOpenSidebar }) => {
       .map((word) => word[0].toUpperCase() + word.substring(1))
       .join(" ");
   }
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const { status, user } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if ((status === "success" || status === "signed-up") && user) {
+      setFirstName(user.first_name);
+
+      setLastName(user.last_name);
+    }
+  }, [status, user]);
 
   return (
     <div className="app-layout-header">
@@ -29,7 +42,9 @@ const Header = ({ onOpenSidebar }) => {
       <div className="flex items-center">
         <Avatar />
 
-        <span className="font-semibold mr-3 hidden sm:block">@Username</span>
+        <span className="font-semibold mr-3 hidden sm:block">
+          {firstName} {lastName}
+        </span>
 
         <span className="w-8 h-8 rounded-xl flex justify-center items-center border border-main-700 text-main-700">
           <i className="fa-regular fa-sun"></i>

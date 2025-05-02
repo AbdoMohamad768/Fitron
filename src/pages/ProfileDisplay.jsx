@@ -1,16 +1,29 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchSettings
+} from "../store/slices/settingsSlice";
+import { useEffect, useState } from "react";
+
 
 function ProfileDisplay() {
-  // Make the display section in the profile page and make responsive to min-width 320px
-  // You can go to the page in this rout "/app/profile/display"
-  const [measurmentData, setData] = useState({
-    measurment: "",
-    Zone: "",
-  });
-  const changeDate = (e) => {
-    const { name, value } = e.target;
-    setData((e) => ({ ...e, [name]: value }));
-  };
+  const dispatch = useDispatch();
+  
+  const { settings, status } = useSelector((state) => state.settings);
+  const [measurement,setMeasurement] = useState("");
+  const [timeZone,setTimeZone] =useState("");
+
+
+  useEffect(() => {
+      dispatch(fetchSettings());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (status === "succeeded" && settings) {
+      setMeasurement(settings.measurement_units?.weight || "kg");  
+      setTimeZone(settings.time_zone || "Egypt");  
+    }
+  }, [status, settings]);
+
   return (
     <div className="w-full flex justify-center flex-col items-start p-6 rounded-2xl bg-[#E8F0E8]">
       <div className="w-full mb-4 flex flex-col">
@@ -19,10 +32,9 @@ function ProfileDisplay() {
           name="measurment"
           id="measurment"
           className="bg-white pt-2 pb-2 pl-3"
-          onChange={changeDate}
-          value={measurmentData.measurment}
+          value={measurement}
+          onChange={(e) => setMeasurement(e.target.value)}
         >
-          <option value="">Metric (kg/m/kcal/c°)</option>
           <option value="kg">kg</option>
           <option value="m">m</option>
           <option value="kcal">kcal</option>
@@ -36,19 +48,19 @@ function ProfileDisplay() {
           name="Zone"
           id="zone"
           className="bg-white pt-2 pb-2 pl-3"
-          onChange={changeDate}
-          value={measurmentData.Zone}
+          value={timeZone}
+          onChange={(e) => setTimeZone(e.target.value)}
         >
           <option value="Egypt">Egypt</option>
           <option value="KSA">KSA</option>
           <option value="UAE">UAE</option>
-          <option value="Jordon">Jordon</option>
+          <option value="Jordan">Jordan</option>
         </select>
       </div>
 
       <button
-        className="bg-main-700 pt-2 pb-2 pr-4  md:w-1/6 pl-4  sm:w-full rounded-2xl text-white cursor-pointer hover:bg-[#73bc31]  trasition duration-200"
-        type="submit"
+        className="bg-main-700 pt-2 pb-2 pr-4 md:w-1/6 pl-4 sm:w-full rounded-2xl text-white cursor-pointer hover:bg-[#73bc31] transition duration-200"
+        type="submit" 
       >
         Save
       </button>

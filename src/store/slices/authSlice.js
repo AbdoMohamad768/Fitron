@@ -12,6 +12,7 @@ export const logout = createAsyncThunk("auth/logout", logoutAPI);
 export const signup = createAsyncThunk("auth/signup", signupAPI);
 
 const initialState = {
+
   user: {},
   status: "idle",
   error: null,
@@ -20,6 +21,7 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
+  reducers:{},
   extraReducers: function (builder) {
     builder
       .addCase(login.pending, function (state) {
@@ -63,3 +65,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
+
