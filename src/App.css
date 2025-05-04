@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
-:root {
-}
+:root {}
 
 @theme {
   /* Green Color */
@@ -59,22 +58,68 @@
   --shadow-blue-custom-1: 0px 0px 10px rgba(30, 167, 197, 70%);
   --shadow-orange-custom-1: 0px 0px 10px rgba(255, 148, 50, 70%);
   --shadow-menu-sidebar: 0px 0px 5px 2px rgba(118, 206, 36, 90%);
+
+  /* ############################ */
+  /* ############################ */
+  /* Dark Mode with dark- prefix */
+  /* ############################ */
+  /* ############################ */
+
+  --dark-color-main-850: #5e8a3f;
+  --dark-color-main-800: #669e40;
+  --dark-color-main-750: #96d05b;
+  --dark-color-main-700: #8fd94a;
+  --dark-color-main-300: #c8d8b6;
+  --dark-color-main-200: #d6e4d0;
+  --dark-color-grey-200: #2d2f36;
+  --dark-color-grey-400: #4d5260;
+  --dark-color-grey-500: #5c5f6e;
+  --dark-color-grey-350: #b0b2b8;
+  --dark-color-grey-300: #d1d3d6;
+  --dark-color-grey-50: #1e1f24;
+  --dark-color-black-900: #ffffff;
+  --dark-color-black-800: #e0e0e0;
+  --dark-color-black-icon-text-700: #e0e0e0;
+  --dark-color-black-icon-500: #a3a5ae;
+  --dark-color-black-text-400: #c0c2c7;
+  --dark-color-white-900: #1e1f24;
+  --dark-color-white-table-800: #25262b;
+  --dark-color-head-blue-900: #1e2a36;
+  --dark-color-blue-600: #1e5d8c;
+  --dark-color-red-600: #8c2b26;
+  --dark-color-circle-icon-blue: #1e5d8c;
+  --dark-color-circle-icon-green: #6ec51e;
+  --dark-color-circle-icon-yellow: #d4a017;
+  --dark-color-circle-icon-orange: #ff9432;
+  --dark-color-circle-icon-red: #ff285c;
+  --dark-color-icon-red: #ff406f;
+  --dark-color-icon-red-stroke: #ff8da0;
+  --dark-color-blue: #1ea7c5;
+  --dark-color-icon-blue-stroke: #2e5c6f;
+  --dark-color-orange: #ff9432;
+  --dark-color-icon-green-stroke: rgba(110, 197, 30, 26%);
+  --dark-color-yoga: #c046d3;
+  --dark-shadow-custom-1: 32px 31px 83px rgba(0, 0, 0, 0.5);
+  --dark-shadow-notification: 15px 20px 50px rgba(0, 0, 0, 0.7);
+  --dark-shadow-add-exersices-right: 23px 31px 90px rgba(0, 0, 0, 0.7);
+  --dark-shadow-add-exersices-left: -45px 20px 45px rgba(0, 0, 0, 0.4);
+  --dark-shadow-green-custom-1: 0px 0px 10px 5px rgba(110, 197, 30, 0.6);
+  --dark-shadow-red-custom-1: 0px 0px 10px rgba(255, 40, 92, 90%);
+  --dark-shadow-blue-custom-1: 0px 0px 10px rgba(30, 167, 197, 90%);
+  --dark-shadow-orange-custom-1: 0px 0px 10px rgba(255, 148, 50, 90%);
+  --dark-shadow-menu-sidebar: 0px 0px 5px 2px rgba(118, 206, 36, 90%);
 }
 
 .gradient-1 {
-  background-image: linear-gradient(
-    to bottom left,
-    var(--color-main-700) 22%,
-    var(--color-main-300) 99%
-  );
+  background-image: linear-gradient(to bottom left,
+      var(--color-main-700) 22%,
+      var(--color-main-300) 99%);
 }
 
 .gradient-2 {
-  background-image: linear-gradient(
-    to right,
-    var(--color-main-700),
-    var(--color-grey-200)
-  );
+  background-image: linear-gradient(to right,
+      var(--color-main-700),
+      var(--color-grey-200));
 }
 
 .signup-form,
@@ -83,8 +128,7 @@
   @apply w-md h-fit shadow-custom-1 rounded-lg p-8 mx-4 bg-grey-50;
 }
 
-.test {
-}
+.test {}
 
 .app-layout-header {
   @apply flex justify-between items-center m-3 rounded-xl bg-gray-50 shadow-sm p-4 col-span-2 sm:row-span-1 sm:col-span-1;
@@ -98,8 +142,7 @@
   */
 }
 
-.sidebar-links-list {
-}
+.sidebar-links-list {}
 
 .sidebar-link-icon {
   @apply text-xl w-11 h-11 rounded-full bg-white flex justify-center items-center md:bg-transparent;
