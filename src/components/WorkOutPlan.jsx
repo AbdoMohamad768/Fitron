@@ -1,171 +1,16 @@
-import ListWorkOutPlan from "./ListWorkoutPlan";
+import { useDispatch, useSelector } from "react-redux";
+import ListWorkOutPlan from "./ListWorkOutPlan";
+import { useEffect } from "react";
+import { fetchWorkouts } from "../store/slices/workoutSlice";
 
-const data = [
-  {
-    exercise_name: "Squats",
-    activity: "running",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Completed",
-    icon: "/public/Icins-WorkOut-plan/Squats.svg",
-  },
-  {
-    exercise_name: "Squats",
-    activity: "running",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Completed",
-    icon: "/public/Icins-WorkOut-plan/Squats.svg",
-  },
-  {
-    exercise_name: "Squats",
-    activity: "running",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Completed",
-    icon: "/public/Icins-WorkOut-plan/Squats.svg",
-  },
-  {
-    exercise_name: "Squats",
-    activity: "running",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Completed",
-    icon: "/public/Icins-WorkOut-plan/Squats.svg",
-  },
-  {
-    exercise_name: "Squats",
-    activity: "running",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Completed",
-    icon: "/public/Icins-WorkOut-plan/Squats.svg",
-  },
-  {
-    exercise_name: "Squats",
-    activity: "running",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Completed",
-    icon: "/public/Icins-WorkOut-plan/Squats.svg",
-  },
-  {
-    exercise_name: "Squats",
-    activity: "running",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Completed",
-    icon: "/public/Icins-WorkOut-plan/Squats.svg",
-  },
-  {
-    exercise_name: "Bench Press",
-    activity: "gym",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "In Progress",
-    icon: "/public/Icins-WorkOut-plan/Branch Press.svg",
-  },
-  {
-    exercise_name: "Shoulder Press",
-    activity: "cycling",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Skipped",
-    icon: "/public/Icins-WorkOut-plan/Shoulder Press.svg",
-  },
-  {
-    exercise_name: "Pull-Ups",
-    activity: "gym",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Completed",
-    icon: "/public/Icins-WorkOut-plan/Pull-Ups.svg",
-  },
-  {
-    exercise_name: "Deadlifts",
-    activity: "gym",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Completed",
-    icon: "/public/Icins-WorkOut-plan/Deadlifts.svg",
-  },
-  {
-    exercise_name: "Plank",
-    activity: "gym",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Completed",
-    icon: "/public/Icins-WorkOut-plan/Plank.svg",
-  },
-  {
-    exercise_name: "Running",
-    activity: "running",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "In Progress",
-    icon: "/public/Icins-WorkOut-plan/Runing.svg",
-  },
-  {
-    exercise_name: "Lunges",
-    activity: "gym",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Not Started",
-    icon: "/public/Icins-WorkOut-plan/Lunges.svg",
-  },
-  {
-    exercise_name: "Bicep Curls",
-    activity: "gym",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Completed",
-    icon: "/public/Icins-WorkOut-plan/Bicep Curls.svg",
-  },
-  {
-    exercise_name: "Cycling",
-    activity: "cycling",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Skipped",
-    icon: "/public/Icins-WorkOut-plan/Cycling.svg",
-  },
-  {
-    exercise_name: "Mountain Climbers",
-    activity: "gym",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Completed",
-    icon: "/public/Icins-WorkOut-plan/Mountain-Clinbers.svg",
-  },
-  {
-    exercise_name: "Yoga (Stretching)",
-    activity: "gym",
-    duration: "60 seconds",
-    date: "02-5-2025",
-    calories: "180 cal",
-    status: "Not Started",
-    icon: "/public/Icins-WorkOut-plan/Yoga.svg",
-  },
-];
+
 
 const WorkoutPlan = () => {
+  const data = useSelector((value)=>value.workouts.workouts);
+  const dispatch=useDispatch();
+  useEffect(()=>{
+    dispatch(fetchWorkouts())
+  },[dispatch])
   return (
     <div className="h-full min-w-160.5 flex flex-col">
       <div className="flex justify-between items-center">
@@ -210,10 +55,9 @@ const WorkoutPlan = () => {
           <li className="basis-1/6">Status</li>
         </ul>
       </div>
-
       <div>
-        {data.map((item, index) => (
-          <ListWorkOutPlan key={index} item={item} />
+        {data.map((item) => (
+          <ListWorkOutPlan key={item.id} item={item} />
         ))}
       </div>
 

@@ -28,20 +28,20 @@ const ListWorkoutPlan = ({ item }) => {
           {workoutTypeIcons[item.activity]}
         </span>
 
-        <span className="whitespace-nowrap">{item.exercise_name}</span>
+        <span className="whitespace-nowrap">{item.name}</span>
       </li>
       <li className="basis-1/6 ">{item.activity}</li>
       <li className="basis-1/6 ">{item.duration}</li>
-      <li className="basis-1/6">{item.date}</li>
-      <li className="basis-1/6">{item.calories}</li>
+      <li className="basis-1/6">{item.start_date}</li>
+      <li className="basis-1/6">{item.calories_burned}</li>
       <li className="basis-1/6">
         <span
           className={`px-1 py-1 rounded-full text-[10px] md:text-xs font-semibold md:px-2 md:py-1 ${
-            item.status === "Completed"
+            item.status === "complete"
               ? "bg-green-100 text-green-700"
-              : item.status === "In Progress"
+              : item.status === "not-started"
               ? "bg-yellow-100 text-yellow-700"
-              : item.status === "Skipped"
+              : item.status === "skipped"
               ? "bg-red-100 text-red-700"
               : "bg-gray-100 text-gray-700 "
           }`}

@@ -1,8 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getWorkouts } from "../../api/workoutsAPI";
+
+
 
 export const fetchWorkouts = createAsyncThunk(
   "workouts/fetchWorkouts",
-  async function () {}
+    getWorkouts
 );
 
 const initialState = {
