@@ -12,6 +12,7 @@ function ProfileInfo() {
   const [region, setRegion] = useState("");
 
   const { user, status } = useSelector((state) => state.user);
+  const { settings, status: stat } = useSelector((state) => state.settings);
   useEffect(() => {
     if ((status === "success" || status === "signed-up") && user) {
       setBirthday(user.birthday);
@@ -21,9 +22,14 @@ function ProfileInfo() {
       setLastName(user.last_name);
       setWeight(user.weight);
       setEmail(user.email);
-      setRegion(user.region);
     }
   }, [status, user]);
+
+  useEffect(() => {
+    if (stat === "succeeded" && settings) {
+      setRegion(settings.time_zone);
+    }
+  }, [settings, stat]);
 
   return (
     <div className="flex flex-col items-center">
