@@ -1,7 +1,6 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/slices/authSlice";
-import { useEffect } from "react";
 import LogoButton from "./LogoButton";
 
 const sidebarLinks = [
@@ -25,7 +24,6 @@ const sidebarLinks = [
 const Sidebar = ({ sidebarOpen, onCloseSidebar }) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   return (
     <nav
