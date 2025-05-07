@@ -90,8 +90,8 @@ export default function ExerciseForm({ setOpenForm, isUpdate }) {
             calories_burned: calories,
             duration: Math.round(
               (parseInt(hours) || 0) * 60 +
-                (parseInt(minutes) || 0) +
-                (parseInt(seconds) || 0) / 60
+              (parseInt(minutes) || 0) +
+              (parseInt(seconds) || 0) / 60
             ),
             name: exerciseName,
             start_date: date,
@@ -107,8 +107,8 @@ export default function ExerciseForm({ setOpenForm, isUpdate }) {
             name: exerciseName,
             duration: Math.round(
               (parseInt(hours) || 0) * 60 +
-                (parseInt(minutes) || 0) +
-                (parseInt(seconds) || 0) / 60
+              (parseInt(minutes) || 0) +
+              (parseInt(seconds) || 0) / 60
             ),
             activity,
             start_date: date,
@@ -128,7 +128,7 @@ export default function ExerciseForm({ setOpenForm, isUpdate }) {
   };
 
   return (
-    <div className="bg-white shadow-xl rounded-xl relative mx-auto">
+    <div className="bg-white dark:bg-dark-main-750 dark:text-white shadow-xl rounded-xl relative mx-auto">
       <button
         onClick={() => setOpenForm(false)}
         className="absolute top-4 right-4 cursor-pointer w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-200 transition duration-300"
@@ -200,7 +200,7 @@ export default function ExerciseForm({ setOpenForm, isUpdate }) {
               onChange={handleDateChange}
               value={date}
               id="date"
-              className="w-full p-2 border border-main-700 rounded-xl text-main-700"
+              className="w-full p-2 border border-main-700 rounded-xl text-main-700 dark:text-white"
               required
             />
           </div>
@@ -214,56 +214,56 @@ export default function ExerciseForm({ setOpenForm, isUpdate }) {
             id="Activity"
             onChange={handleActivityChange}
             value={activity}
-            className="w-full border border-main-700 p-2 rounded-xl"
+            className="w-full border border-main-700  p-2 rounded-xl"
             required
           >
-            <option value="">-- Choose Activity --</option>
-            <option value="running">Running</option>
-            <option value="swimming">Swimming</option>
-            <option value="cycling">Cycling</option>
-            <option value="gym">Gym</option>
+            <option className="dark:text-white" value="">-- Choose Activity --</option>
+            <option className="dark:text-black" value="running">Running</option>
+            <option className="dark:text-black" value="swimming">Swimming</option>
+            <option className="dark:text-black" value="cycling">Cycling</option>
+            <option className="dark:text-black" value="gym">Gym</option>
           </select>
         </div>
 
         {(activity === "running" ||
           activity === "cycling" ||
           activity === "swimming") && (
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="Distance" className="font-medium block mb-1">
-                Distance (km)
-              </label>
-              <input
-                type="number"
-                id="Distance"
-                value={distance}
-                onChange={handleDistanceChange}
-                className="w-full p-2 border border-main-700 rounded-xl"
-                min="0"
-                step="0.01"
-                required
-              />
-            </div>
-
-            {(activity === "running" || activity === "cycling") && (
+            <div className="space-y-4">
               <div>
-                <label htmlFor="Pace" className="font-medium block mb-1">
-                  Pace (min/km)
+                <label htmlFor="Distance" className="font-medium block mb-1">
+                  Distance (km)
                 </label>
-                <div className="flex gap-4">
-                  <input
-                    type="text"
-                    onChange={handlePaceChange}
-                    value={pace}
-                    id="pace"
-                    className="w-1/2 p-2 border border-main-700 rounded-xl"
-                    required
-                  />
-                </div>
+                <input
+                  type="number"
+                  id="Distance"
+                  value={distance}
+                  onChange={handleDistanceChange}
+                  className="w-full p-2 border border-main-700 rounded-xl"
+                  min="0"
+                  step="0.01"
+                  required
+                />
               </div>
-            )}
-          </div>
-        )}
+
+              {(activity === "running" || activity === "cycling") && (
+                <div>
+                  <label htmlFor="Pace" className="font-medium block mb-1">
+                    Pace (min/km)
+                  </label>
+                  <div className="flex gap-4">
+                    <input
+                      type="text"
+                      onChange={handlePaceChange}
+                      value={pace}
+                      id="pace"
+                      className="w-1/2 p-2 border border-main-700 rounded-xl"
+                      required
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
         <div>
           <label htmlFor="Calories" className="font-medium block mb-1">
