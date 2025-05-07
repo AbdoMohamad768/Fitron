@@ -128,7 +128,10 @@ export async function deleteWorkout({ id, activity }) {
   return id;
 }
 export async function duplicateWorkout({ workout }) {
-  const extraData = await getWorkoutByActivity(workout.id, workout.activity);
+  const extraData = await getWorkoutByActivity({
+    id: workout.id,
+    activity: workout.activity,
+  });
 
   const data = await addWorkout({
     name: workout.name,
@@ -137,8 +140,8 @@ export async function duplicateWorkout({ workout }) {
     start_date: workout.start_date,
     calories_burned: workout.calories_burned,
     status: workout.status,
-    pace: extraData?.pace ?? null,
-    distance: extraData?.distance ?? null,
+    pace: extraData?.pace,
+    distance: extraData?.distance,
     by: workout.by,
   });
 
