@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,7 +9,8 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import chartData from "../data/caloriesData";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchWorkouts } from "../store/slices/workoutSlice.js";
 
 // Register Chart.js components
 ChartJS.register(
@@ -20,9 +21,73 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+const days = [
+  { day: '01' },
+  { day: '02' },
+  { day: '03' },
+  { day: '04' },
+  { day: '05' },
+  { day: '06'},
+  { day: '07' },
+  { day: '08' },
+  { day: '09' },
+  { day: '10' },
+  { day: '11' },
+  { day: '12' },
+  { day: '13' },
+  { day: '14' },
+  { day: '15'},
+  { day: '16' },
+  { day: '17' },
+  { day: '18' },
+  { day: '19' },
+  { day: '20' }
+];
+
+const daysWeek=[
+  { day: '01' },
+  { day: '02' },
+  { day: '03' },
+  { day: '04' },
+  { day: '05' },
+  { day: '06'},
+  { day: '07' }
+]
 
 const CaloriesChart = () => {
-  const [timeRange, setTimeRange] = useState("Weekly");
+  const [timeRange, setTimeRange] = useState("weekly");
+  const data = useSelector((state)=>{return state.workouts.workouts});
+  const dispatch= useDispatch();
+  useEffect(()=>{
+    dispatch(fetchWorkouts())
+  },[dispatch]);
+
+const chartData={
+  labels: days.map(item => item.day),
+  datasets: [
+    {
+      label: 'monthly Calories',
+      data: data.map(item =>item.calories_burned),
+      backgroundColor: "#c046d3",
+      borderRadius: 4,
+      barThickness: 12,
+      offset: 4
+    },
+  ],
+}
+const chart={
+  labels: daysWeek.map(item => item.day),
+  datasets: [
+    {
+      label: 'weekly Calories',
+      data: data.map(item =>item.calories_burned),
+      backgroundColor: "#c046d3",
+      borderRadius: 4,
+      barThickness: 12,
+      offset: 4
+    },
+  ],
+}
 
   const options = {
     responsive: true,
@@ -83,8 +148,7 @@ const CaloriesChart = () => {
         <div>
           <h2 className="font-bold text-lg">Calories Chart</h2>
           <p className="text-gray-500 dark:text-dark-black-900 text-sm">
-            This Chart it&apos;s About Burn Calories into the Week And Month And
-            Year.
+            This Chart it&apos;s About Burn Calories into the Week And Month.
           </p>
         </div>
         <div className="flex items-center gap-4">
@@ -96,13 +160,13 @@ const CaloriesChart = () => {
           </div>
           <div className="relative">
             <select
+
               className="bg-gray-100 dark:text-black rounded-md px-3 py-1 pr-8 appearance-none text-sm"
               value={timeRange}
               onChange={(e) => setTimeRange(e.target.value)}
             >
-              <option>Weekly</option>
-              <option>Monthly</option>
-              <option>Yearly</option>
+              <option value="weekly">weekly</option>
+              <option value="Monthly">Monthly</option>
             </select>
             <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none">
               <svg
@@ -125,7 +189,7 @@ const CaloriesChart = () => {
         </div>
       </div>
       <div className="h-64 w-full">
-        <Bar data={chartData} options={options} />
+        {timeRange==="weekly" ? (<Bar data={chart} options={options} />) : ( <Bar data={chartData} options={options} />)}
       </div>
     </div>
   );

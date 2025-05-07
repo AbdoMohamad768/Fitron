@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
+import Modal from './Modal';
+import TargetForm from './TargetForm';
 
 const Progress = () => {
   const [animatedPercentage, setAnimatedPercentage] = useState(0);
   const targetPercentage = 81;
   const circumference = 2 * Math.PI * 45;
   const dashOffset = circumference - (animatedPercentage / 100) * circumference;
-
+  const [openForm, setOpenForm] = useState(false);
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimatedPercentage(targetPercentage);
@@ -15,6 +17,12 @@ const Progress = () => {
   }, [targetPercentage]);
 
   return (
+    <>
+      {openForm && (
+    <Modal isOpen={openForm} onClose={() => setOpenForm(false)}>
+      <TargetForm setOpenForm={setOpenForm} />
+    </Modal>
+  )}
     <div className="bg-white dark:bg-dark-main-750 dark:text-white rounded-xl p-4 shadow-sm animate-fade-in-3 hover:shadow-md transition-all duration-300">
       <h2 className="font-bold text-[25px] mb-8 animate-fade-in text-center">Goal</h2>
       <div className="flex flex-col items-center justify-center">
@@ -51,11 +59,12 @@ const Progress = () => {
         <p className="text-gray-500 dark:text-dark-black-900 text-sm mt-4 text-center w-48 animate-fade-in-4">
           this is the Active Goals of the User
         </p>
-        <button className="mt-6 px-4 py-2 rounded-md hover:bg-green-300  hover:-translate-y-1 transition duration-150 cursor-pointer ">
+        <button className="mt-6 px-4 py-2 rounded-md hover:bg-green-300  hover:-translate-y-1 transition duration-150 cursor-pointer "onClick={() => setOpenForm((pre) => !pre)}>
           Set Target
         </button>
       </div>
     </div>
+    </>
   );
 };
 

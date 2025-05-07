@@ -48,7 +48,7 @@ function Dashboard() {
         </div>
         <div className=" p-[15px] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
           <PersonalCard
-            name="8 Days"
+            name="7 Days"
             icon={faClock}
             para="Continues Days"
             style="#c046d3"
@@ -87,7 +87,7 @@ function Dashboard() {
                 </div>
                 <div className="text-[13px]">
                   <p>86%</p>
-                  <p>Yoga</p>
+                  <p>Swimming</p>
                 </div>
               </div>
             </div>
@@ -120,7 +120,7 @@ function Dashboard() {
         />
         <EachProgress
           icon={<YogaIcon />}
-          title="Yoga"
+          title="Swimming"
           percentage={78}
           color="#B27CFF"
           subtitle="56min/1hr"

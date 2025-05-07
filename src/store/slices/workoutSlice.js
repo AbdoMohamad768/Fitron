@@ -33,6 +33,9 @@ export const getWorkoutByActivity = createAsyncThunk(
   getWorkoutByActivityAPI
 );
 
+
+
+
 const initialState = {
   workout: null,
   workouts: [],
