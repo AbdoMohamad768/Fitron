@@ -21,7 +21,7 @@ import CaloriesChart from "../components/CaloriesChart.jsx";
 function Dashboard() {
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 cursor-pointer">
+      <div className="grid grid-cols-1 dark:text-dark-black-900 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 cursor-pointer">
         <div className=" p-[15px] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
           <PersonalCard
             name="42%"
@@ -60,7 +60,7 @@ function Dashboard() {
         <div className="h-[100%] pt-[40px] w-full">
           <div className="pb-[20px] flex justify-between">
             <div className="">
-              <p className="text-[22]">Workout Static</p>
+              <p className="text-[22] dark:text-dark-black-900">Workout Static</p>
             </div>
             <div className=" flex align-center gap-10 md:gap-5 ">
               <div className="flex gap-[5px] text-blue">
@@ -96,7 +96,7 @@ function Dashboard() {
             <DashLinear />
           </div>
         </div>
-        <div className=" h-full">
+        <div className="h-full">
           <Progress />
         </div>
       </div>

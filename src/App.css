@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 :root {
 }
@@ -66,49 +67,55 @@
   /* ############################ */
   /* ############################ */
 
-  --dark-color-main-850: #5e8a3f;
-  --dark-color-main-800: #669e40;
-  --dark-color-main-750: #96d05b;
-  --dark-color-main-700: #8fd94a;
-  --dark-color-main-300: #c8d8b6;
-  --dark-color-main-200: #d6e4d0;
-  --dark-color-grey-200: #2d2f36;
-  --dark-color-grey-400: #4d5260;
-  --dark-color-grey-500: #5c5f6e;
-  --dark-color-grey-350: #b0b2b8;
-  --dark-color-grey-300: #d1d3d6;
-  --dark-color-grey-50: #1e1f24;
-  --dark-color-black-900: #ffffff;
-  --dark-color-black-800: #e0e0e0;
-  --dark-color-black-icon-text-700: #e0e0e0;
-  --dark-color-black-icon-500: #a3a5ae;
-  --dark-color-black-text-400: #c0c2c7;
-  --dark-color-white-900: #1e1f24;
-  --dark-color-white-table-800: #25262b;
-  --dark-color-head-blue-900: #1e2a36;
-  --dark-color-blue-600: #1e5d8c;
-  --dark-color-red-600: #8c2b26;
-  --dark-color-circle-icon-blue: #1e5d8c;
-  --dark-color-circle-icon-green: #6ec51e;
-  --dark-color-circle-icon-yellow: #d4a017;
-  --dark-color-circle-icon-orange: #ff9432;
-  --dark-color-circle-icon-red: #ff285c;
-  --dark-color-icon-red: #ff406f;
-  --dark-color-icon-red-stroke: #ff8da0;
-  --dark-color-blue: #1ea7c5;
-  --dark-color-icon-blue-stroke: #2e5c6f;
-  --dark-color-orange: #ff9432;
-  --dark-color-icon-green-stroke: rgba(110, 197, 30, 26%);
-  --dark-color-yoga: #c046d3;
-  --dark-shadow-custom-1: 32px 31px 83px rgba(0, 0, 0, 0.5);
-  --dark-shadow-notification: 15px 20px 50px rgba(0, 0, 0, 0.7);
-  --dark-shadow-add-exersices-right: 23px 31px 90px rgba(0, 0, 0, 0.7);
-  --dark-shadow-add-exersices-left: -45px 20px 45px rgba(0, 0, 0, 0.4);
-  --dark-shadow-green-custom-1: 0px 0px 10px 5px rgba(110, 197, 30, 0.6);
-  --dark-shadow-red-custom-1: 0px 0px 10px rgba(255, 40, 92, 90%);
-  --dark-shadow-blue-custom-1: 0px 0px 10px rgba(30, 167, 197, 90%);
-  --dark-shadow-orange-custom-1: 0px 0px 10px rgba(255, 148, 50, 90%);
-  --dark-shadow-menu-sidebar: 0px 0px 5px 2px rgba(118, 206, 36, 90%);
+  --color-dark-main-850: #1E3A2F;
+  --color-dark-main-800: #1E2A44;
+  --color-dark-main-750: #2A3869;
+  --color-dark-main-700: #1E2A80;
+  --color-dark-main-300: #6EE7B7;
+  --color-dark-main-200: #D1FAE5;
+
+  --color-dark-grey-200: #E0E7FF;
+  --color-dark-grey-400: #D1D5DB;
+  --color-dark-grey-500: #9CA3AF;
+  --color-dark-grey-350: #B0B5C0;
+  --color-dark-grey-300: #D1D5DB88;
+  --color-dark-grey-50: #1E2A44;
+
+  --color-dark-black-900: #F9FAFB;
+  --color-dark-black-800: #E0E7FF;
+  --color-dark-black-icon-text-700: #E0E7FF;
+  --color-dark-black-icon-500: #9CA3AF;
+  --color-dark-black-text-400: #B0B5C0;
+  --color-dark-white-900: #1E2A44;
+  --color-dark-white-table-800: #2A3856;
+
+  --color-dark-head-blue-900: #2A3856;
+  --color-dark-blue-600: #60A5FA;
+  --color-dark-red-600: #EF4444;
+
+  --color-dark-circle-icon-blue: #60A5FA;
+  --color-dark-circle-icon-green: #34D399;
+  --color-dark-circle-icon-yellow: #FBBF24;
+  --color-dark-circle-icon-orange: #F97316;
+  --color-dark-circle-icon-red: #EF4444;
+
+  --color-dark-icon-red: #EF4444;
+  --color-dark-icon-red-stroke: #FCA5A5;
+  --color-dark-blue: #60A5FA;
+  --color-dark-icon-blue-stroke: #BFDBFE;
+  --color-dark-orange: #F97316;
+  --color-dark-icon-green-stroke: #6EE7B7;
+  --color-dark-yoga: #C4B5FD;
+
+  --shadow-dark-custom-1: 10px 10px 20px rgba(0, 0, 0, 0.3);
+  --shadow-dark-notification: 5px 10px 15px rgba(0, 0, 0, 0.4);
+  --shadow-dark-add-exersices-right: 8px 12px 20px rgba(0, 0, 0, 0.4);
+  --shadow-dark-add-exersices-left: -12px 8px 15px rgba(0, 0, 0, 0.3);
+  --shadow-dark-green-custom-1: 0px 0px 6px 2px rgba(52, 211, 153, 0.3);
+  --shadow-dark-red-custom-1: 0px 0px 6px rgba(239, 68, 68, 0.4);
+  --shadow-dark-blue-custom-1: 0px 0px 6px rgba(96, 165, 250, 0.4);
+  --shadow-dark-orange-custom-1: 0px 0px 6px rgba(249, 115, 22, 0.4);
+  --shadow-dark-menu-sidebar: 0px 0px 4px 1px rgba(52, 211, 153, 0.5);
 }
 
 .gradient-1 {
@@ -137,11 +144,11 @@
 }
 
 .app-layout-header {
-  @apply flex justify-between items-center m-3 rounded-xl bg-gray-50 shadow-sm p-4 col-span-2 sm:row-span-1 sm:col-span-1;
+  @apply flex justify-between items-center m-3 rounded-xl bg-gray-50 dark:bg-dark-main-800 dark:text-white shadow-sm p-4 col-span-2 sm:row-span-1 sm:col-span-1;
 }
 
 .sidebar {
-  @apply absolute -left-[240px] top-3 bottom-3 bg-gray-50 text-grey-350 rounded-xl py-4 w-60 flex flex-col items-center transition duration-500 sm:relative sm:row-span-2 sm:m-3 sm:mr-0 sm:left-0 sm:top-0 sm:bottom-0 sm:translate-x-0 sm:w-fit lg:w-60 z-50;
+  @apply absolute -left-[240px] top-3 bottom-3 bg-gray-50 dark:bg-dark-main-800 text-grey-350 dark:text-white rounded-xl py-4 w-60 flex flex-col items-center transition duration-500 sm:relative sm:row-span-2 sm:m-3 sm:mr-0 sm:left-0 sm:top-0 sm:bottom-0 sm:translate-x-0 sm:w-fit lg:w-60 z-50;
 
   /* 
     absolute -left-full top-3 bottom-3 bg-gray-50 text-grey-350 rounded-xl p-4 w-60 flex flex-col items-center sm:relative sm:row-span-2 sm:mr-3 sm:w-fit xl:w-60;

@@ -17,8 +17,27 @@ import Profile from "./pages/Profile";
 import ProfiledDetails from "./pages/ProfiledDetails";
 import ProfileDisplay from "./pages/ProfileDisplay";
 import ProfileInfo from "./pages/ProfileInfo";
-
 function App() {
+
+  // const dispatch = useDispatch();
+  // const theme = useSelector((state) => state.theme.theme);
+
+  // useEffect(() => {
+  //   const savedTheme = localStorage.getItem("theme");
+  //   const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  //   if (savedTheme) {
+  //     dispatch(setTheme(savedTheme));
+  //   } else if (systemPrefersDark) {
+  //     dispatch(setTheme("dark"));
+  //   }
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   document.documentElement.setAttribute("data-theme", theme);
+  //   localStorage.setItem("theme", theme);
+  // }, [theme]);
+
   return (
     <BrowserRouter>
       <Routes>

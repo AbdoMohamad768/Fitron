@@ -27,9 +27,8 @@ const Sidebar = ({ sidebarOpen, onCloseSidebar }) => {
 
   return (
     <nav
-      className={`sidebar ${
-        sidebarOpen ? "translate-x-[100%]" : "translate-x-0"
-      }`}
+      className={`sidebar ${sidebarOpen ? "translate-x-[100%]" : "translate-x-0"
+        }`}
     >
       <div className="flex items-center justify-between w-full px-4 mb-8">
         <LogoButton size="md" />
@@ -81,11 +80,10 @@ function LogoutButton({ onClick, disabled = false }) {
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`px-4 py-2 flex gasp-2 items-center justify-center w-full sm:justify-start rounded-xl ${
-        disabled === "loading"
-          ? "cursor-not-allowed hover:bg-red-100"
-          : "cursor-pointer hover:bg-red-500 hover:text-white"
-      }`}
+      className={`px-4 py-2 flex gasp-2 items-center justify-center w-full sm:justify-start rounded-xl ${disabled === "loading"
+        ? "cursor-not-allowed hover:bg-red-100"
+        : "cursor-pointer hover:bg-red-500 hover:text-white"
+        }`}
     >
       <span className="sidebar-link-icon">
         <i className="fas fa-sign-out-alt"></i>

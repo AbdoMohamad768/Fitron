@@ -96,9 +96,6 @@ export async function updateUser({
   return data;
 }
 
-
-
-
 // export async function updateUser({
 //   firstName,
 //   lastName,

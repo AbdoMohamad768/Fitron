@@ -2,9 +2,14 @@ import { useLocation } from "react-router";
 import Avatar from "./Avatar";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import useTheme from "../hooks/useTheme";
 
 const Header = ({ onOpenSidebar }) => {
   let pageName = useLocation().pathname.split("/")[2];
+
+  const { theme, toggleTheme } = useTheme();
+  // const theme = useSelector((state) => state.theme.theme);
+  // const dispatch = useDispatch();
 
   if (pageName.includes("-")) {
     pageName = pageName
@@ -46,10 +51,15 @@ const Header = ({ onOpenSidebar }) => {
           {firstName} {lastName}
         </span>
 
-        <span className="w-8 h-8 rounded-xl flex justify-center items-center border border-main-700 text-main-700">
-          <i className="fa-regular fa-sun"></i>
-        </span>
-
+        <button
+          onClick={toggleTheme}
+          aria-label={`switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          className="w-8 h-8 rounded-xl flex justify-center items-center border border-main-700 text-main-700"
+        >
+          <i
+            className={`fa-regular ${theme === "light" ? "fa-sun" : "fa-moon"}`}
+          ></i>
+        </button>
         {/* <i className="fa-regular fa-moon"></i> */}
       </div>
     </div>

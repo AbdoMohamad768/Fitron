@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { UpdateDisplay } from "../store/slices/settingsSlice";
+import { setUser } from "../store/slices/authSlice";
 
 function ProfiledDetails() {
   const [imageSrc, setImageSrc] = useState("/profile photo.png");
@@ -12,12 +14,14 @@ function ProfiledDetails() {
     }
   };
 
+  const dispatch = useDispatch();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [birthday, setBirthday] = useState("");
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const [gender, setGender] = useState("");
+  const [isEdit, setIsEdit] = useState(false);
 
   const { user, status } = useSelector((state) => state.user);
   useEffect(() => {
@@ -31,8 +35,36 @@ function ProfiledDetails() {
     }
   }, [status, user]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!user?.id) {
+      console.error("User ID is missing!");
+      return;
+    }
+
+    dispatch(
+      UpdateDisplay({
+        id: user.id,
+        firstName,
+        lastName,
+        birthday,
+        weight,
+        height,
+        gender,
+      })
+    ).then((res) => {
+      if (res.meta.requestStatus === "fulfilled") {
+        dispatch(setUser(res.payload[0]));
+        setIsEdit(false);
+      } else {
+        console.error("Failed to update user data", res.error);
+      }
+    });
+  };
+
   return (
-    <div className="bg-[#E8F0E8] w-full justify-center h-full flex flex-col sm:flex-row items-center mt-3 mb-5 gap-6 sm:gap-20 px-6 sm:px-10 py-4 rounded-3xl shadow-md">
+    <div className="bg-[#E8F0E8] dark:bg-dark-main-750 dark:text-white w-full justify-center h-full flex flex-col sm:flex-row items-center mt-3 mb-5 gap-6 sm:gap-20 px-6 sm:px-10 py-4 rounded-3xl shadow-md">
       <div className="flex flex-col justify-center items-center gap-3">
         <div className="aspect-square w-[100px] sm:w-[120px] md:w-[150px] lg:w-[180px] shrink-0">
           <img
@@ -43,7 +75,7 @@ function ProfiledDetails() {
         </div>
 
         <label htmlFor="image-upload" className="flex gap-1 cursor-pointer">
-          <h3 className="font-semibold text-black-icon-500">Upload</h3>
+          <h3 className="font-semibold text-black-icon-500 dark:text-white">Upload</h3>
           <img src="/public/Upload.svg" alt="" className="w-7" />
         </label>
         <input
@@ -55,7 +87,7 @@ function ProfiledDetails() {
         />
       </div>
 
-      <form className="w-full sm:flex-1">
+      <form className="w-full sm:flex-1" onSubmit={handleSubmit}>
         <div className="flex flex-col mb-5">
           <div className=" mb-1">
             <label className="font-semibold text-base sm:text-lg md:text-xl">
@@ -67,17 +99,21 @@ function ProfiledDetails() {
               required
               type="text"
               value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              onChange={(e) => {
+                setFirstName(e.target.value), setIsEdit(true);
+              }}
               placeholder="First name"
-              className="bg-white-900 w-1/2 rounded-md p-2 text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
+              className="bg-white-900 w-1/2 rounded-md p-2 dark:bg-dark-grey-200 dark:text-grey-200 text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
             />
             <input
               type="text"
               required
               value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              onChange={(e) => {
+                setLastName(e.target.value), setIsEdit(true);
+              }}
               placeholder="Last name"
-              className="bg-white-900 w-1/2 rounded-md p-2 text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
+              className="bg-white-900 w-1/2 rounded-md p-2 dark:bg-dark-grey-200 dark:text-grey-200 text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
             />
           </div>
         </div>
@@ -90,8 +126,10 @@ function ProfiledDetails() {
             type="date"
             required
             value={birthday}
-            onChange={(e) => setBirthday(e.target.value)}
-            className="bg-white-900 p-2 rounded-md text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
+            onChange={(e) => {
+              setBirthday(e.target.value), setIsEdit(true);
+            }}
+            className="bg-white-900 p-2 rounded-md dark:bg-dark-grey-200 dark:text-grey-200 text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
           />
         </div>
 
@@ -104,9 +142,11 @@ function ProfiledDetails() {
               type="text"
               required
               value={weight}
-              onChange={(e) => setWeight(e.target.value)}
+              onChange={(e) => {
+                setWeight(e.target.value), setIsEdit(true);
+              }}
               placeholder="70"
-              className="bg-white-900 p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-main-750 "
+              className="bg-white-900 p-2 rounded-md dark:bg-dark-grey-200 dark:text-grey-200 focus:outline-none focus:ring-1 focus:ring-main-750 "
             />
           </div>
 
@@ -118,9 +158,11 @@ function ProfiledDetails() {
               type="text"
               required
               value={height}
-              onChange={(e) => setHeight(e.target.value)}
+              onChange={(e) => {
+                setHeight(e.target.value), setIsEdit(true);
+              }}
               placeholder="1.75"
-              className="bg-white-900 p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-main-750"
+              className="bg-white-900 p-2 rounded-md dark:bg-dark-grey-200 dark:text-grey-200 focus:outline-none focus:ring-1 focus:ring-main-750"
             />
           </div>
         </div>
@@ -132,20 +174,23 @@ function ProfiledDetails() {
           <select
             required
             value={gender}
-            onChange={(e) => setGender(e.target.value)}
-            className="w-1/1 p-2 bg-white-900 rounded-md text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
+            onChange={(e) => {
+              setGender(e.target.value), setIsEdit(true);
+            }}
+            className="w-1/1 p-2 bg-white-900 rounded-md dark:bg-dark-grey-200 dark:text-grey-200 text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
           >
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
         </div>
-        <button
-          // onClick={handleSubmit}
-          className="bg-main-700 pt-2 pb-2 pr-4  md:w-1/6 pl-4  sm:w-full rounded-2xl text-white cursor-pointer hover:bg-[#73bc31]  trasition duration-200"
-          type="submit"
-        >
-          Save
-        </button>
+        {isEdit && (
+          <button
+            className="bg-main-700 pt-2 pb-2 pr-4  md:w-1/6 pl-4  sm:w-full rounded-2xl text-white cursor-pointer hover:bg-[#73bc31]  trasition duration-200"
+            type="submit"
+          >
+            Save
+          </button>
+        )}
       </form>
     </div>
   );

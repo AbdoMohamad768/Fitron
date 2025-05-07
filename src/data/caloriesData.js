@@ -29,7 +29,7 @@ const chartData = {
       backgroundColor: "#c046d3",
       borderRadius: 4,
       barThickness: 12,
-      offset:4
+      offset: 4
     },
   ],
 };
