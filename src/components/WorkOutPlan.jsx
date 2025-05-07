@@ -12,6 +12,9 @@ const WorkoutPlan = () => {
 
   const [openForm, setOpenForm] = useState(false);
   const [openOperation, setOpenOperation] = useState(null);
+  const [search, setSearch] = useState("");
+  const [activity, setActivity] = useState("");
+  const [period, setPeriod] = useState("");
 
   const handleOpenOperation = (id) => {
     setOpenOperation(openOperation === id ? null : id);
@@ -20,6 +23,44 @@ const WorkoutPlan = () => {
   useEffect(() => {
     dispatch(fetchWorkouts());
   }, [dispatch]);
+
+  const now = new Date();
+  const filteredWorkouts = data
+    .filter((item) => item.by === user.id)
+    .filter((item) =>
+      search.length > 0
+        ? item.name.toLowerCase().includes(search.toLowerCase())
+        : true
+    )
+    .filter((item) =>
+      activity.length > 0
+        ? item.activity.toLowerCase() === activity.toLowerCase()
+        : true
+    )
+    .filter((item) => {
+      if (!period) return true;
+
+      const itemDate = new Date(item.start_date);
+
+      if (period === "week") {
+        const startOfWeek = new Date(now);
+        startOfWeek.setDate(now.getDate() - now.getDay());
+        return itemDate >= startOfWeek;
+      }
+
+      if (period === "month") {
+        return (
+          itemDate.getFullYear() === now.getFullYear() &&
+          itemDate.getMonth() === now.getMonth()
+        );
+      }
+
+      if (period === "year") {
+        return itemDate.getFullYear() === now.getFullYear();
+      }
+
+      return true;
+    });
 
   return (
     <div className="relative">
@@ -37,21 +78,34 @@ const WorkoutPlan = () => {
             </span>
 
             <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
               type="text"
               placeholder="Search for exercise"
               className="pl-10 pr-4 py-2 rounded-full bg-gray-100 text-gray-700 focus:outline-none focus:ring-1 focus:ring-main-300 text-sm"
             />
 
-            <select className="pl-2 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-1 focus:ring-main-300 text-gray-700 text-sm">
-              <option value="">Status</option>
-              <option value="">Active</option>
-              <option value="">InActive</option>
+            <select
+              value={activity}
+              onChange={(e) => setActivity(e.target.value)}
+              className="pl-2 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-1 focus:ring-main-300 text-gray-700 text-sm"
+            >
+              <option value="">Activity</option>
+              <option value="running">Running</option>
+              <option value="swimming">Swimming</option>
+              <option value="cycling">Cycling</option>
+              <option value="gym">Gym</option>
             </select>
 
-            <select className="pl-2 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-1 focus:ring-main-300 text-gray-700 text-sm">
-              <option value="">This Week</option>
-              <option value="">This Month</option>
-              <option value="">This yeer</option>
+            <select
+              value={period}
+              onChange={(e) => setPeriod(e.target.value)}
+              className="pl-2 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-1 focus:ring-main-300 text-gray-700 text-sm"
+            >
+              <option value="">Period</option>
+              <option value="week">This Week</option>
+              <option value="month">This Month</option>
+              <option value="year">This yeer</option>
             </select>
           </div>
 
@@ -77,7 +131,7 @@ const WorkoutPlan = () => {
         </div>
 
         <div>
-          {data
+          {filteredWorkouts
             .filter((item) => item.by === user.id)
             .map((item) => (
               <ListWorkOutPlan
