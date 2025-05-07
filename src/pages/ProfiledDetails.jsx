@@ -64,7 +64,7 @@ function ProfiledDetails() {
   };
 
   return (
-    <div className="bg-[#E8F0E8] w-full justify-center h-full flex flex-col sm:flex-row items-center mt-3 mb-5 gap-6 sm:gap-20 px-6 sm:px-10 py-4 rounded-3xl shadow-md">
+    <div className="bg-[#E8F0E8] dark:bg-dark-main-750 dark:text-white w-full justify-center h-full flex flex-col sm:flex-row items-center mt-3 mb-5 gap-6 sm:gap-20 px-6 sm:px-10 py-4 rounded-3xl shadow-md">
       <div className="flex flex-col justify-center items-center gap-3">
         <div className="aspect-square w-[100px] sm:w-[120px] md:w-[150px] lg:w-[180px] shrink-0">
           <img
@@ -75,7 +75,7 @@ function ProfiledDetails() {
         </div>
 
         <label htmlFor="image-upload" className="flex gap-1 cursor-pointer">
-          <h3 className="font-semibold text-black-icon-500">Upload</h3>
+          <h3 className="font-semibold text-black-icon-500 dark:text-white">Upload</h3>
           <img src="/public/Upload.svg" alt="" className="w-7" />
         </label>
         <input
@@ -103,7 +103,7 @@ function ProfiledDetails() {
                 setFirstName(e.target.value), setIsEdit(true);
               }}
               placeholder="First name"
-              className="bg-white-900 w-1/2 rounded-md p-2 text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
+              className="bg-white-900 w-1/2 rounded-md p-2 dark:bg-dark-grey-200 dark:text-grey-200 text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
             />
             <input
               type="text"
@@ -113,7 +113,7 @@ function ProfiledDetails() {
                 setLastName(e.target.value), setIsEdit(true);
               }}
               placeholder="Last name"
-              className="bg-white-900 w-1/2 rounded-md p-2 text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
+              className="bg-white-900 w-1/2 rounded-md p-2 dark:bg-dark-grey-200 dark:text-grey-200 text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
             />
           </div>
         </div>
@@ -129,7 +129,7 @@ function ProfiledDetails() {
             onChange={(e) => {
               setBirthday(e.target.value), setIsEdit(true);
             }}
-            className="bg-white-900 p-2 rounded-md text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
+            className="bg-white-900 p-2 rounded-md dark:bg-dark-grey-200 dark:text-grey-200 text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
           />
         </div>
 
@@ -146,7 +146,7 @@ function ProfiledDetails() {
                 setWeight(e.target.value), setIsEdit(true);
               }}
               placeholder="70"
-              className="bg-white-900 p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-main-750 "
+              className="bg-white-900 p-2 rounded-md dark:bg-dark-grey-200 dark:text-grey-200 focus:outline-none focus:ring-1 focus:ring-main-750 "
             />
           </div>
 
@@ -162,7 +162,7 @@ function ProfiledDetails() {
                 setHeight(e.target.value), setIsEdit(true);
               }}
               placeholder="1.75"
-              className="bg-white-900 p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-main-750"
+              className="bg-white-900 p-2 rounded-md dark:bg-dark-grey-200 dark:text-grey-200 focus:outline-none focus:ring-1 focus:ring-main-750"
             />
           </div>
         </div>
@@ -177,7 +177,7 @@ function ProfiledDetails() {
             onChange={(e) => {
               setGender(e.target.value), setIsEdit(true);
             }}
-            className="w-1/1 p-2 bg-white-900 rounded-md text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
+            className="w-1/1 p-2 bg-white-900 rounded-md dark:bg-dark-grey-200 dark:text-grey-200 text-black-text-400 focus:outline-none focus:ring-1 focus:ring-main-750"
           >
             <option value="Male">Male</option>
             <option value="Female">Female</option>

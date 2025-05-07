@@ -10,12 +10,12 @@ const Progress = () => {
     const timer = setTimeout(() => {
       setAnimatedPercentage(targetPercentage);
     }, 500);
-    
+
     return () => clearTimeout(timer);
   }, [targetPercentage]);
 
   return (
-    <div className="bg-white rounded-xl p-4 shadow-sm animate-fade-in-3 hover:shadow-md transition-all duration-300">
+    <div className="bg-white dark:bg-dark-main-750 dark:text-white rounded-xl p-4 shadow-sm animate-fade-in-3 hover:shadow-md transition-all duration-300">
       <h2 className="font-bold text-[25px] mb-8 animate-fade-in text-center">Goal</h2>
       <div className="flex flex-col items-center justify-center">
         <div className="relative w-40 h-40 transform transition-transform hover:scale-105 duration-500">
@@ -48,8 +48,8 @@ const Progress = () => {
             </span>
           </div>
         </div>
-        <p className="text-gray-500 text-sm mt-4 text-center w-48 animate-fade-in-4">
-          this is the Active Goals of the User 
+        <p className="text-gray-500 dark:text-dark-black-900 text-sm mt-4 text-center w-48 animate-fade-in-4">
+          this is the Active Goals of the User
         </p>
         <button className="mt-6 px-4 py-2 rounded-md hover:bg-green-300  hover:-translate-y-1 transition duration-150 cursor-pointer ">
           Set Target

@@ -16,9 +16,9 @@ function ProfileDisplay() {
 
 
   useEffect(() => {
-      dispatch(fetchSettings());
-  }, [ dispatch]);
-  
+    dispatch(fetchSettings());
+  }, [dispatch]);
+
 
   useEffect(() => {
     if (status === "succeeded" && settings) {
@@ -47,13 +47,13 @@ function ProfileDisplay() {
   };
 
   return (
-    <div className="w-full flex justify-center flex-col items-start p-6 rounded-2xl bg-[#E8F0E8]">
+    <div className="w-full flex justify-center flex-col items-start p-6 rounded-2xl bg-[#E8F0E8] dark:bg-dark-main-750 dark:text-white">
       <div className="w-full mb-4 flex flex-col">
         <label className="font-semibold mb-2">Measurement Units</label>
         <select
           name="measurment"
           id="measurment"
-          className="bg-white pt-2 pb-2 pl-3 focus:outline-none focus:ring-1 focus:ring-main-750"
+          className="bg-white dark:bg-dark-grey-200 dark:text-grey-200 pt-2 pb-2 pl-3 focus:outline-none focus:ring-1 focus:ring-main-750"
           value={measurement}
           onChange={(e) => {
             setMeasurement(e.target.value), setIsEdit(true);
@@ -71,7 +71,7 @@ function ProfileDisplay() {
         <select
           name="Zone"
           id="zone"
-          className="bg-white pt-2 pb-2 pl-3 focus:outline-none focus:ring-1 focus:ring-main-750"
+          className="bg-white dark:bg-dark-grey-200 dark:text-grey-200 pt-2 pb-2 pl-3 focus:outline-none focus:ring-1 focus:ring-main-750"
           value={timeZone}
           onChange={(e) => {
             setTimeZone(e.target.value), setIsEdit(true);

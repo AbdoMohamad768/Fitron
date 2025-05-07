@@ -10,11 +10,10 @@ function ProfileTabBar() {
       >
         {({ isActive }) => (
           <div
-            className={`${
-              isActive
+            className={`${isActive
                 ? "text-main-700 border-b-2 border-[#7AC142] pb-1"
                 : "text-[#666]"
-            }`}
+              }`}
           >
             INFO
           </div>
@@ -27,11 +26,10 @@ function ProfileTabBar() {
       >
         {({ isActive }) => (
           <div
-            className={`${
-              isActive
+            className={`${isActive
                 ? "text-main-700 border-b-2 border-[#7AC142] pb-1"
                 : "text-[#666]"
-            }`}
+              }`}
           >
             DISPLAY
           </div>
@@ -44,11 +42,10 @@ function ProfileTabBar() {
       >
         {({ isActive }) => (
           <div
-            className={`${
-              isActive
+            className={`${isActive
                 ? "text-main-700 border-b-2 border-[#7AC142] pb-1"
                 : "text-[#666]"
-            }`}
+              }`}
           >
             PROFILE
           </div>

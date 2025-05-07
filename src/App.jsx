@@ -18,7 +18,7 @@ import ProfiledDetails from "./pages/ProfiledDetails";
 import ProfileDisplay from "./pages/ProfileDisplay";
 import ProfileInfo from "./pages/ProfileInfo";
 function App() {
-  
+
   // const dispatch = useDispatch();
   // const theme = useSelector((state) => state.theme.theme);
 
