@@ -6,17 +6,19 @@ import useTheme from "../hooks/useTheme";
 
 const Header = ({ onOpenSidebar }) => {
   let pageName = useLocation().pathname.split("/")[2];
-
-  const { theme, toggleTheme } = useTheme();
-  // const theme = useSelector((state) => state.theme.theme);
-  // const dispatch = useDispatch();
-
-  if (pageName.includes("-")) {
+  
+    if (pageName.includes("-")) {
     pageName = pageName
       .split("-")
       .map((word) => word[0].toUpperCase() + word.substring(1))
       .join(" ");
   }
+
+  const { theme, toggleTheme } = useTheme();
+  // const theme = useSelector((state) => state.theme.theme);
+  // const dispatch = useDispatch();
+
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const { status, user } = useSelector((state) => state.user);

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSettings } from "../store/slices/settingsSlice";
 
 function ProfileInfo() {
   const [firstName, setFirstName] = useState("");
@@ -12,6 +13,7 @@ function ProfileInfo() {
   const [region, setRegion] = useState("");
 
   const { user, status } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const { settings, status: stat } = useSelector((state) => state.settings);
   useEffect(() => {
     if ((status === "success" || status === "signed-up") && user) {
@@ -30,6 +32,10 @@ function ProfileInfo() {
       setRegion(settings.time_zone);
     }
   }, [settings, stat]);
+
+    useEffect(() => {
+      dispatch(fetchSettings());
+    }, [dispatch]);
 
   return (
     <div className="flex flex-col items-center">

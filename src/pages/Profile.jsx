@@ -5,7 +5,6 @@ function Profile() {
   return (
     <>
       <ProfileTabBar />
-
       <Outlet />
     </>
   );
