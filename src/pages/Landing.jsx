@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 function Landing() {
   return (
-    <div className="h-screen gradient-2 pt-5 px-4">
+    <div className="h-screen gradient-2 pt-5 px-4 overflow-scroll md:overflow-hidden">
       <div className="m-auto max-w-6xl">
         <header className="flex justify-between items-center bg-grey-400 p-4 rounded-3xl">
           <div className="logo flex items-center space-x-2">
