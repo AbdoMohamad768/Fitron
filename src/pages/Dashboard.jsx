@@ -18,11 +18,11 @@ import {
   YogaIcon,
 } from "../components/ActivityIcons.jsx";
 import CaloriesChart from "../components/CaloriesChart.jsx";
-import { useEffect } from "react";
+
+import { useEffect, useState } from "react";
 import { fetchWorkouts } from "../store/slices/workoutSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "./../components/Spinner";
-
 function Dashboard() {
   const dispatch = useDispatch();
   const workoutsStatus = useSelector((state) => state.workouts.status);
@@ -32,6 +32,57 @@ function Dashboard() {
       dispatch(fetchWorkouts());
     }
   }, [dispatch, workoutsStatus]);
+
+  const [percentageRunning, setPercentRunning] = useState(0);
+  const [percentageCycling, setPercentCycling] = useState(0);
+  const [percentageSwimming, setPercentSwimming] = useState(0);
+  const [weeklyProgress, setWeeklyProgress] = useState(0);
+
+  const data = useSelector((state) => {
+    return state.workouts.workouts || [];
+  });
+
+  useEffect(() => {
+    dispatch(fetchWorkouts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (data.length > 0) {
+      const WEEKLY_CALORIE_GOAL = 3000;
+      const now = new Date();
+      const startOfWeek = new Date(now);
+      const day = now.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
+      const diff = now.getDate() - day + (day === 0 ? -6 : 1); // if Sunday, go back 6 days
+      startOfWeek.setDate(diff);
+      const totals = {
+        running: 0,
+        cycling: 0,
+        swimming: 0,
+        weeklyCalories: 0,
+      };
+
+      data.forEach((ele) => {
+        const workoutDate = new Date(ele.start_date);
+        if (workoutDate >= startOfWeek) {
+          totals.weeklyCalories += ele.calories_burned;
+        }
+        if (ele.activity === "running") totals.running += ele.calories_burned;
+        if (ele.activity === "cycling") totals.cycling += ele.calories_burned;
+        if (ele.activity === "swimming") totals.swimming += ele.calories_burned;
+      });
+
+      const totalCalories = totals.running + totals.cycling + totals.swimming;
+
+      setPercentRunning(Math.round((totals.running / totalCalories) * 100));
+      setPercentCycling(Math.round((totals.cycling / totalCalories) * 100));
+      setPercentSwimming(Math.round((totals.swimming / totalCalories) * 100));
+      const progress = Math.min(
+        (totals.weeklyCalories / WEEKLY_CALORIE_GOAL) * 100,
+        100
+      );
+      setWeeklyProgress(Math.round(progress));
+    }
+  }, [data]);
 
   if (workoutsStatus === "loading") {
     return (
@@ -46,7 +97,7 @@ function Dashboard() {
       <div className="grid grid-cols-1 dark:text-dark-black-900 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 cursor-pointer">
         <div className=" p-[15px] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
           <PersonalCard
-            name="42%"
+            name={`${weeklyProgress}%`}
             icon={faDumbbell}
             para="Weekly Progress"
             style="#ff285c"
@@ -54,7 +105,9 @@ function Dashboard() {
         </div>
         <div className=" p-[15px] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
           <PersonalCard
-            name="67col"
+            name={`${
+              percentageRunning + percentageCycling + percentageSwimming
+            }%`}
             icon={faFireFlameCurved}
             para="Cardio Burn"
             style="#1ea7c5"
@@ -92,7 +145,7 @@ function Dashboard() {
                   <FontAwesomeIcon icon={faPersonRunning} />
                 </div>
                 <div className="text-[13px]">
-                  <p>45%</p>
+                  <p>{percentageRunning}%</p>
                   <p>Running</p>
                 </div>
               </div>
@@ -101,7 +154,7 @@ function Dashboard() {
                   <FontAwesomeIcon icon={faPersonBiking} />
                 </div>
                 <div className="text-[13px]">
-                  <p>27%</p>
+                  <p>{percentageCycling}%</p>
                   <p>cycling</p>
                 </div>
               </div>
@@ -110,7 +163,7 @@ function Dashboard() {
                   <FontAwesomeIcon icon={faPersonPraying} />
                 </div>
                 <div className="text-[13px]">
-                  <p>86%</p>
+                  <p>{percentageSwimming}%</p>
                   <p>Swimming</p>
                 </div>
               </div>
@@ -121,7 +174,7 @@ function Dashboard() {
           </div>
         </div>
         <div className="h-full">
-          <Progress />
+          <Progress progress={weeklyProgress} />
         </div>
       </div>
 
@@ -129,7 +182,7 @@ function Dashboard() {
         <EachProgress
           icon={<RunningIcon />}
           title="Running"
-          percentage={45}
+          percentage={percentageRunning}
           color="#FF9D4D"
           subtitle="45km/100km"
           animationClass="animate-slide-up-1"
@@ -137,7 +190,7 @@ function Dashboard() {
         <EachProgress
           icon={<IconMID />}
           title="Cycling"
-          percentage={66}
+          percentage={percentageCycling}
           color="#22B8CF"
           subtitle="65km/20km"
           animationClass="animate-slide-up-2"
@@ -145,7 +198,7 @@ function Dashboard() {
         <EachProgress
           icon={<YogaIcon />}
           title="Swimming"
-          percentage={78}
+          percentage={percentageSwimming}
           color="#B27CFF"
           subtitle="56min/1hr"
           animationClass="animate-slide-up-3"

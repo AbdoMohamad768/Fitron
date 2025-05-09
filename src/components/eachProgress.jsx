@@ -9,7 +9,6 @@ const EachProgress = ({
   percentage,
   color,
   subtitle,
-  animationClass
 }) => {
   const [animatedPercentage, setAnimatedPercentage] = useState(0);
 
