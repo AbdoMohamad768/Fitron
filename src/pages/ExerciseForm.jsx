@@ -175,7 +175,11 @@ export default function ExerciseForm({ setOpenForm, workoutToUpdate }) {
             onChange={handleExerciseChange}
             value={exerciseName}
             id="Exercises"
-            className="w-full p-2 border border-main-700 rounded-xl"
+            className={`w-full p-2 border border-main-700 rounded-xl ${
+              status === "updating" || status === "adding"
+                ? "cursor-not-allowed bg-grey-300"
+                : "focus:ring-1 focus:ring-main-750"
+            }`}
             required
           />
         </div>
@@ -191,7 +195,11 @@ export default function ExerciseForm({ setOpenForm, workoutToUpdate }) {
                 id="Hours"
                 placeholder="h"
                 min="0"
-                className="w-1/4 p-2 border border-main-700 rounded-xl"
+                className={`w-1/4 p-2 border border-main-700 rounded-xl ${
+                  status === "updating" || status === "adding"
+                    ? "cursor-not-allowed bg-grey-300"
+                    : "focus:ring-1 focus:ring-main-750"
+                }`}
                 required
               />
               <input
@@ -202,7 +210,11 @@ export default function ExerciseForm({ setOpenForm, workoutToUpdate }) {
                 placeholder="m"
                 min="0"
                 max="59"
-                className="w-1/4 p-2 border border-main-700 rounded-xl"
+                className={`w-1/4 p-2 border border-main-700 rounded-xl ${
+                  status === "updating" || status === "adding"
+                    ? "cursor-not-allowed bg-grey-300"
+                    : "focus:ring-1 focus:ring-main-750"
+                }`}
                 required
               />
               <input
@@ -213,7 +225,11 @@ export default function ExerciseForm({ setOpenForm, workoutToUpdate }) {
                 placeholder="s"
                 min="0"
                 max="59"
-                className="w-1/4 p-2 border border-main-700 rounded-xl"
+                className={`w-1/4 p-2 border border-main-700 rounded-xl ${
+                  status === "updating" || status === "adding"
+                    ? "cursor-not-allowed bg-grey-300"
+                    : "focus:ring-1 focus:ring-main-750"
+                }`}
               />
             </div>
           </div>
@@ -226,7 +242,11 @@ export default function ExerciseForm({ setOpenForm, workoutToUpdate }) {
               onChange={handleDateChange}
               value={date}
               id="date"
-              className="w-full p-2 border border-main-700 rounded-xl text-main-700 dark:text-white"
+              className={`w-full p-2 border border-main-700 rounded-xl text-main-700 dark:text-white ${
+                status === "updating" || status === "adding"
+                  ? "cursor-not-allowed bg-grey-300"
+                  : "focus:ring-1 focus:ring-main-750"
+              }`}
               required
             />
           </div>
@@ -311,7 +331,11 @@ export default function ExerciseForm({ setOpenForm, workoutToUpdate }) {
               id="Calories"
               value={calories}
               onChange={handleCaloriesChange}
-              className="appearance-none w-1/2 pt-2 pb-2 pl-4 pr-4 border mr-5 border-main-700 rounded-xl text-main-700"
+              className={`appearance-none w-1/2 pt-2 pb-2 pl-4 pr-4 border mr-5 border-main-700 rounded-xl text-main-700 ${
+                status === "updating" || status === "adding"
+                  ? "cursor-not-allowed bg-grey-300"
+                  : "focus:ring-1 focus:ring-main-750"
+              }`}
               min="0"
               required
               readOnly
