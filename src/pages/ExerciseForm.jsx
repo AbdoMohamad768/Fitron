@@ -1,23 +1,25 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addWorkout, updateWorkout } from "../store/slices/workoutSlice";
+import { toast } from "react-toastify";
+import SpinnerMini from "../components/SpinnerMini";
 
-export default function ExerciseForm({ setOpenForm, isUpdate }) {
+export default function ExerciseForm({ setOpenForm, workoutToUpdate }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
-  const workouts = useSelector((state) => state.workouts);
+  const status = useSelector((state) => state.workouts.status);
 
-  const workout = workouts.workout;
+  const workout = workoutToUpdate;
 
-  const [exerciseName, setExerciseName] = useState(workout?.name ?? "");
-  const [hours, setHours] = useState(Math.floor(workout?.duration / 60) ?? 0);
+  const [exerciseName, setExerciseName] = useState(workout?.name || "");
+  const [hours, setHours] = useState(Math.floor(workout?.duration / 60) || 0);
   const [minutes, setMinutes] = useState((workout?.duration ?? 0) % 60);
   const [seconds, setSeconds] = useState(0);
-  const [date, setDate] = useState(workout?.start_date ?? "");
-  const [activity, setActivity] = useState(workout?.activity ?? "");
-  const [calories, setCalories] = useState(workout?.calories_burned);
-  const [distance, setDistance] = useState(workout?.distance ?? "");
-  const [pace, setPace] = useState(workout?.pace ?? "");
+  const [date, setDate] = useState(workout?.start_date || "");
+  const [activity, setActivity] = useState(workout?.activity || "");
+  const [calories, setCalories] = useState(workout?.calories_burned || 0);
+  const [distance, setDistance] = useState(workout?.distance || "");
+  const [pace, setPace] = useState(workout?.pace || "");
 
   // Calorie calculation rates (calories per hour) for different activities
   const CALORIE_RATES = useMemo(
@@ -83,15 +85,15 @@ export default function ExerciseForm({ setOpenForm, isUpdate }) {
     e.preventDefault();
 
     try {
-      if (isUpdate) {
+      if (workoutToUpdate) {
         dispatch(
           updateWorkout({
             activity,
             calories_burned: calories,
             duration: Math.round(
               (parseInt(hours) || 0) * 60 +
-              (parseInt(minutes) || 0) +
-              (parseInt(seconds) || 0) / 60
+                (parseInt(minutes) || 0) +
+                (parseInt(seconds) || 0) / 60
             ),
             name: exerciseName,
             start_date: date,
@@ -102,30 +104,54 @@ export default function ExerciseForm({ setOpenForm, isUpdate }) {
           })
         );
       } else {
-        dispatch(
-          addWorkout({
-            name: exerciseName,
-            duration: Math.round(
-              (parseInt(hours) || 0) * 60 +
-              (parseInt(minutes) || 0) +
-              (parseInt(seconds) || 0) / 60
-            ),
-            activity,
-            start_date: date,
-            calories_burned: calories,
-            pace,
-            distance,
-            status: "Active",
-            by: user.id,
-          })
-        );
+        if (
+          !user.height &&
+          !user.weight &&
+          !user.height > 0 &&
+          !user.weight > 0
+        ) {
+          toast.error("You must enter your weight and hight");
+        } else {
+          dispatch(
+            addWorkout({
+              name: exerciseName,
+              duration: Math.round(
+                (parseInt(hours) || 0) * 60 +
+                  (parseInt(minutes) || 0) +
+                  (parseInt(seconds) || 0) / 60
+              ),
+              activity,
+              start_date: date,
+              calories_burned: calories,
+              pace,
+              distance,
+              status: "Active",
+              by: user.id,
+            })
+          );
+
+          if (status === "addedWorkout" || status === "updated") {
+            setActivity("");
+            setCalories("");
+            setDate("");
+            setDistance("");
+            setExerciseName("");
+            setHours(0);
+            setMinutes(0);
+            setSeconds(0);
+            setPace("");
+          }
+        }
       }
     } catch (error) {
       console.error("Failed to add workout:", error);
     }
-
-    setOpenForm(false);
   };
+
+  useEffect(() => {
+    if (status === "addedWorkout" || status === "updated")
+      setOpenForm((pre) => !pre);
+  }, [status, setOpenForm]);
 
   return (
     <div className="bg-white dark:bg-dark-main-750 dark:text-white shadow-xl rounded-xl relative mx-auto">
@@ -217,53 +243,63 @@ export default function ExerciseForm({ setOpenForm, isUpdate }) {
             className="w-full border border-main-700  p-2 rounded-xl"
             required
           >
-            <option className="dark:text-white" value="">-- Choose Activity --</option>
-            <option className="dark:text-black" value="running">Running</option>
-            <option className="dark:text-black" value="swimming">Swimming</option>
-            <option className="dark:text-black" value="cycling">Cycling</option>
-            <option className="dark:text-black" value="gym">Gym</option>
+            <option className="dark:text-white" value="">
+              -- Choose Activity --
+            </option>
+            <option className="dark:text-black" value="running">
+              Running
+            </option>
+            <option className="dark:text-black" value="swimming">
+              Swimming
+            </option>
+            <option className="dark:text-black" value="cycling">
+              Cycling
+            </option>
+            <option className="dark:text-black" value="gym">
+              Gym
+            </option>
           </select>
         </div>
 
         {(activity === "running" ||
           activity === "cycling" ||
           activity === "swimming") && (
-            <div className="space-y-4">
-              <div>
-                <label htmlFor="Distance" className="font-medium block mb-1">
-                  Distance (km)
-                </label>
-                <input
-                  type="number"
-                  id="Distance"
-                  value={distance}
-                  onChange={handleDistanceChange}
-                  className="w-full p-2 border border-main-700 rounded-xl"
-                  min="0"
-                  step="0.01"
-                  required
-                />
-              </div>
-
-              {(activity === "running" || activity === "cycling") && (
-                <div>
-                  <label htmlFor="Pace" className="font-medium block mb-1">
-                    Pace (min/km)
-                  </label>
-                  <div className="flex gap-4">
-                    <input
-                      type="text"
-                      onChange={handlePaceChange}
-                      value={pace}
-                      id="pace"
-                      className="w-1/2 p-2 border border-main-700 rounded-xl"
-                      required
-                    />
-                  </div>
-                </div>
-              )}
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="Distance" className="font-medium block mb-1">
+                Distance (km)
+              </label>
+              <input
+                type="number"
+                id="Distance"
+                value={distance}
+                onChange={handleDistanceChange}
+                className="w-full p-2 border border-main-700 rounded-xl"
+                min="0"
+                step="0.01"
+                required
+              />
             </div>
-          )}
+
+            {(activity === "running" || activity === "cycling") && (
+              <div>
+                <label htmlFor="Pace" className="font-medium block mb-1">
+                  Pace (min/km)
+                </label>
+                <div className="flex gap-4">
+                  <input
+                    type="text"
+                    onChange={handlePaceChange}
+                    value={pace}
+                    id="pace"
+                    className="w-1/2 p-2 border border-main-700 rounded-xl"
+                    required
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         <div>
           <label htmlFor="Calories" className="font-medium block mb-1">
@@ -284,10 +320,20 @@ export default function ExerciseForm({ setOpenForm, isUpdate }) {
         </div>
 
         <button
-          className="bg-main-700 pt-2 pb-2 pr-4 w-1/3 pl-4 rounded-2xl text-white hover:bg-main-800 transition-colors cursor-pointer"
+          className={`bg-main-700 pt-2 pb-2 pr-4 w-1/3 pl-4 rounded-2xl text-white hover:bg-main-800 transition-colors ${
+            status === "updating" || status === "adding"
+              ? "hover:bg-main-800 cursor-not-allowed flex items-center justify-center"
+              : "cursor-pointer"
+          }`}
           type="submit"
         >
-          {isUpdate ? "Update" : "Save"}
+          {status === "updating" || status === "adding" ? (
+            <SpinnerMini />
+          ) : workoutToUpdate ? (
+            "Update"
+          ) : (
+            "Save"
+          )}
         </button>
       </form>
     </div>

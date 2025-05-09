@@ -18,7 +18,29 @@ import {
   YogaIcon,
 } from "../components/ActivityIcons.jsx";
 import CaloriesChart from "../components/CaloriesChart.jsx";
+import { useEffect } from "react";
+import { fetchWorkouts } from "../store/slices/workoutSlice.js";
+import { useDispatch, useSelector } from "react-redux";
+import Spinner from "./../components/Spinner";
+
 function Dashboard() {
+  const dispatch = useDispatch();
+  const workoutsStatus = useSelector((state) => state.workouts.status);
+
+  useEffect(() => {
+    if (workoutsStatus === "idle" || workoutsStatus === null) {
+      dispatch(fetchWorkouts());
+    }
+  }, [dispatch, workoutsStatus]);
+
+  if (workoutsStatus === "loading") {
+    return (
+      <div className="w-full h-screen flex justify-center items-center">
+        <Spinner />
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="grid grid-cols-1 dark:text-dark-black-900 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 cursor-pointer">
@@ -60,7 +82,9 @@ function Dashboard() {
         <div className="h-[100%] pt-[40px] w-full">
           <div className="pb-[20px] flex justify-between">
             <div className="">
-              <p className="text-[22] dark:text-dark-black-900">Workout Static</p>
+              <p className="text-[22] dark:text-dark-black-900">
+                Workout Static
+              </p>
             </div>
             <div className=" flex align-center gap-10 md:gap-5 ">
               <div className="flex gap-[5px] text-blue">

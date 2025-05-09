@@ -1,50 +1,33 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { UpdateDisplay } from "../store/slices/settingsSlice";
-import { setUser } from "../store/slices/authSlice";
+
+import default_user from "../../public/default-user.jpg";
+import SpinnerMini from "../components/SpinnerMini";
+import { updateUser } from "../store/slices/authSlice";
 
 function ProfiledDetails() {
-  const [imageSrc, setImageSrc] = useState("/profile photo.png");
-
-  const handleImageChange = (e) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setImageSrc(imageUrl);
-    }
-  };
-
+  const { user, status } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [weight, setWeight] = useState("");
-  const [height, setHeight] = useState("");
-  const [gender, setGender] = useState("");
+
+  const [firstName, setFirstName] = useState(user.first_name || "");
+  const [lastName, setLastName] = useState(user.last_name || "");
+  const [birthday, setBirthday] = useState(user.birthday || "");
+  const [weight, setWeight] = useState(user.weight || "");
+  const [height, setHeight] = useState(user.height || "");
+  const [gender, setGender] = useState(user.gender || "");
   const [isEdit, setIsEdit] = useState(false);
 
-  const { user, status } = useSelector((state) => state.user);
   useEffect(() => {
-    if ((status === "success" || status === "signed-up") && user) {
-      setBirthday(user.birthday || "");
-      setFirstName(user.first_name || "");
-      setGender(user.gender || "");
-      setHeight(user.height || "");
-      setLastName(user.last_name || "");
-      setWeight(user.weight || "");
+    if (status === "updated") {
+      setIsEdit(false);
     }
   }, [status, user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!user?.id) {
-      console.error("User ID is missing!");
-      return;
-    }
-
     dispatch(
-      UpdateDisplay({
+      updateUser({
         id: user.id,
         firstName,
         lastName,
@@ -53,14 +36,7 @@ function ProfiledDetails() {
         height,
         gender,
       })
-    ).then((res) => {
-      if (res.meta.requestStatus === "fulfilled") {
-        dispatch(setUser(res.payload[0]));
-        setIsEdit(false);
-      } else {
-        console.error("Failed to update user data", res.error);
-      }
-    });
+    );
   };
 
   return (
@@ -68,14 +44,16 @@ function ProfiledDetails() {
       <div className="flex flex-col justify-center items-center sm:pt-5 gap-3">
         <div className="aspect-square w-[100px] sm:w-[120px] md:w-[150px] lg:w-[180px] shrink-0">
           <img
-            src={imageSrc}
+            src={default_user}
             alt="Profile"
             className="w-full h-full object-cover rounded-full"
           />
         </div>
 
-        <label htmlFor="image-upload" className="flex gap-1 cursor-pointer">
-          <h3 className="font-semibold text-black-icon-500 dark:text-white">Upload</h3>
+        {/* <label htmlFor="image-upload" className="flex gap-1 cursor-pointer">
+          <h3 className="font-semibold text-black-icon-500 dark:text-white">
+            Upload
+          </h3>
           <img src="/public/Upload.svg" alt="" className="w-7" />
         </label>
         <input
@@ -83,8 +61,7 @@ function ProfiledDetails() {
           type="file"
           accept="image/*"
           className="hidden"
-          onChange={handleImageChange}
-        />
+        /> */}
       </div>
 
       <form className="w-full 3xl:flex-1" onSubmit={handleSubmit}>
@@ -183,12 +160,17 @@ function ProfiledDetails() {
             <option value="Female">Female</option>
           </select>
         </div>
+
         {isEdit && (
           <button
-            className="bg-main-700 pt-2 pb-2 pr-4  md:w-1/6 pl-4  sm:w-full rounded-2xl text-white cursor-pointer hover:bg-[#73bc31]  trasition duration-200"
+            className={`bg-main-700 pt-2 pb-2 pr-4  md:w-1/6 pl-4  sm:w-full rounded-2xl text-white hover:bg-green-600  trasition duration-200 ${
+              status === "updating"
+                ? " cursor-not-allowed flex items-center justify-center"
+                : "cursor-pointer"
+            }`}
             type="submit"
           >
-            Save
+            {status === "updating" ? <SpinnerMini /> : "Save"}
           </button>
         )}
       </form>

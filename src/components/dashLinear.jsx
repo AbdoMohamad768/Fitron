@@ -9,9 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchWorkouts } from "../store/slices/workoutSlice";
+import { useSelector } from "react-redux";
 
 ChartJS.register(
   CategoryScale,
@@ -27,10 +25,6 @@ const DashLinear = () => {
   const data = useSelector((state) => {
     return state.workouts.workouts || [];
   });
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchWorkouts());
-  }, [dispatch]);
 
   const lineChartData = {
     labels: [

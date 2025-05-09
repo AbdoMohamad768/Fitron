@@ -7,6 +7,7 @@ import {
 import { useState } from "react";
 import Modal from "./Modal";
 import ExerciseForm from "../pages/ExerciseForm";
+
 const workoutTypeIcons = {
   running: <i className="fa-solid fa-person-running"></i>,
   cycling: <i className="fa-solid fa-person-biking"></i>,
@@ -35,7 +36,6 @@ const ListWorkoutPlan = ({ item, handleOpenOperation, openOperation }) => {
   }
 
   function handleUpdate() {
-    // dispatch(updateWorkout({ workout: item }));
     dispatch(getWorkoutByActivity({ id: item.id, activity: item.activity }));
     setOpenModal(true);
 
@@ -46,15 +46,11 @@ const ListWorkoutPlan = ({ item, handleOpenOperation, openOperation }) => {
     <>
       {openModal && status === "got" && (
         <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
-          <ExerciseForm
-            setOpenForm={setOpenModal}
-            isUpdate={true}
-            // handleSubmit={() => dispatch(updateWorkout({ workout: item }))}
-          />
+          <ExerciseForm setOpenForm={setOpenModal} workoutToUpdate={item} />
         </Modal>
       )}
 
-      <ul className="flex items-center px-3 py-2 bg-white dark:bg-dark-main-750 dark:text-white rounded-xl mt-2 text-sm text-gray-700 gap-3 ">
+      <ul className="flex items-center px-3 py-2 bg-white hover:bg-gray-100 dark:bg-dark-main-750 dark:text-white rounded-xl mt-2 text-sm text-gray-700 gap-3 ">
         <li className="flex items-center gap-2 basis-2/6">
           <span
             className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold ${
@@ -83,7 +79,7 @@ const ListWorkoutPlan = ({ item, handleOpenOperation, openOperation }) => {
         <li className="basis-1/6 relative">
           <button
             onClick={() => handleOpenOperation(item.id)}
-            className="w-7 h-7 flex items-center justify-center rounded-full cursor-pointer hover:bg-gray-100 transition duration-300"
+            className="w-7 h-7 flex items-center justify-center rounded-full cursor-pointer hover:bg-gray-200 transition duration-300"
           >
             <i className="fa-solid fa-ellipsis-vertical"></i>
           </button>

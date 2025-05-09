@@ -5,6 +5,7 @@ import LogoButton from "../components/LogoButton";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../store/slices/authSlice";
+import SpinnerMini from "../components/SpinnerMini";
 
 function SignUp() {
   const [firstName, setFirstName] = useState("user");
@@ -106,7 +107,7 @@ function SignUp() {
           disabled={signupStatus === "loading"}
           type={"submit"}
         >
-          Sign Up
+          {signupStatus === "loading" ? <SpinnerMini /> : "Sign Up"}
         </LoginSignupButton>
         <p className=" mt-2  text-gray-600">
           Already have an account?{" "}

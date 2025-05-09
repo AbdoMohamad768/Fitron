@@ -1,41 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSettings } from "../store/slices/settingsSlice";
+import SpinnerMini from "../components/SpinnerMini";
 
 function ProfileInfo() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [weight, setWeight] = useState("");
-  const [height, setHeight] = useState("");
-  const [gender, setGender] = useState("");
-  const [email, setEmail] = useState("");
-  const [region, setRegion] = useState("");
-
   const { user, status } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
   const { settings, status: stat } = useSelector((state) => state.settings);
-  useEffect(() => {
-    if ((status === "success" || status === "signed-up") && user) {
-      setBirthday(user.birthday);
-      setFirstName(user.first_name);
-      setGender(user.gender);
-      setHeight(user.height);
-      setLastName(user.last_name);
-      setWeight(user.weight);
-      setEmail(user.email);
-    }
-  }, [status, user]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (stat === "succeeded" && settings) {
-      setRegion(settings.time_zone);
-    }
-  }, [settings, stat]);
-
-    useEffect(() => {
+    if (stat === "idle" || stat === null) {
       dispatch(fetchSettings());
-    }, [dispatch]);
+    }
+  }, [dispatch, stat]);
 
   return (
     <div className="flex flex-col items-center">
@@ -49,13 +26,14 @@ function ProfileInfo() {
         />
         <div className="flex flex-col justify-center items-center sm:items-start">
           <h2 className="text-[16px] sm:text-[18px] lg:text-[20px] font-bold mb-2 sm:mb-3 leading-tight">
-            {firstName} {lastName}
+            {status === "loading" ? (
+              <SpinnerMini />
+            ) : (
+              user.first_name + " " + user.last_name
+            )}
           </h2>
           <p className="text-[14px] sm:text-[16px] lg:text-[20px] mb-2 sm:mb-3 leading-tight">
-            {email}
-          </p>
-          <p className="text-[14px] sm:text-[16px] lg:text-[20px] leading-tight">
-            0123456789
+            {status === "loading" ? <SpinnerMini /> : user.email}
           </p>
         </div>
       </div>
@@ -68,7 +46,7 @@ function ProfileInfo() {
               FIRST NAME:
             </span>
             <span className="text-[13px] sm:text-[15px] font-semibold uppercase flex-1 text-right sm:text-left">
-              {firstName || `_`}
+              {status === "loading" ? <SpinnerMini /> : user.first_name || `_`}
             </span>
           </div>
 
@@ -77,7 +55,7 @@ function ProfileInfo() {
               LAST NAME:
             </span>
             <span className="text-[13px] sm:text-[15px] font-semibold uppercase flex-1 text-right sm:text-left">
-              {lastName || `_`}
+              {status === "loading" ? <SpinnerMini /> : user.last_name || `_`}
             </span>
           </div>
 
@@ -86,7 +64,7 @@ function ProfileInfo() {
               BIRTHDAY:
             </span>
             <span className="text-[13px] sm:text-[15px] font-semibold uppercase flex-1 text-right sm:text-left">
-              {birthday || `_`}
+              {status === "loading" ? <SpinnerMini /> : user.birthday || `_`}
             </span>
           </div>
 
@@ -95,7 +73,7 @@ function ProfileInfo() {
               REGION:
             </span>
             <span className="text-[13px] sm:text-[15px] font-semibold uppercase flex-1 text-right sm:text-left">
-              {region || `_`}
+              {stat === "loading" ? <SpinnerMini /> : settings.time_zone || `_`}
             </span>
           </div>
         </div>
@@ -107,7 +85,7 @@ function ProfileInfo() {
               GENDER:
             </span>
             <span className="text-[13px] sm:text-[15px] font-semibold uppercase flex-1 text-right sm:text-left">
-              {gender || `_`}
+              {status === "loading" ? <SpinnerMini /> : user.gender || `_`}
             </span>
           </div>
 
@@ -116,7 +94,7 @@ function ProfileInfo() {
               WEIGHT:
             </span>
             <span className="text-[13px] sm:text-[15px] font-semibold uppercase flex-1 text-right sm:text-left">
-              {weight || `_`}
+              {status === "loading" ? <SpinnerMini /> : user.weight || `_`}
             </span>
           </div>
 
@@ -125,7 +103,7 @@ function ProfileInfo() {
               HEIGHT:
             </span>
             <span className="text-[13px] sm:text-[15px] font-semibold uppercase flex-1 text-right sm:text-left">
-              {height || `_`}
+              {status === "loading" ? <SpinnerMini /> : user.height || `_`}
             </span>
           </div>
         </div>
