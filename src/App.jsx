@@ -17,63 +17,49 @@ import Profile from "./pages/Profile";
 import ProfiledDetails from "./pages/ProfiledDetails";
 import ProfileDisplay from "./pages/ProfileDisplay";
 import ProfileInfo from "./pages/ProfileInfo";
+import { ToastContainer } from "react-toastify";
+
 function App() {
-
-  // const dispatch = useDispatch();
-  // const theme = useSelector((state) => state.theme.theme);
-
-  // useEffect(() => {
-  //   const savedTheme = localStorage.getItem("theme");
-  //   const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  //   if (savedTheme) {
-  //     dispatch(setTheme(savedTheme));
-  //   } else if (systemPrefersDark) {
-  //     dispatch(setTheme("dark"));
-  //   }
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   document.documentElement.setAttribute("data-theme", theme);
-  //   localStorage.setItem("theme", theme);
-  // }, [theme]);
-
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route index path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route index path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
 
-        <Route path="/recovery" element={<Recovery />}>
-          <Route index element={<Navigate replace to="confirm-email" />} />
-          <Route path="confirm-email" element={<ConfirmEmail />} />
-          <Route path="recovery-code" element={<RecoveryCode />} />
-          <Route path="reset-password" element={<ResetPassword />} />
-        </Route>
-
-        <Route
-          path="/app"
-          element={
-            <ProtectedRout>
-              <AppLayout />
-            </ProtectedRout>
-          }
-        >
-          <Route index element={<Navigate replace to="dashboard" />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="workout-plan" element={<WorkoutPlan />} />
-          <Route path="profile" element={<Profile />}>
-            <Route index element={<Navigate replace to="info" />} />
-            <Route path="info" element={<ProfileInfo />} />
-            <Route path="display" element={<ProfileDisplay />} />
-            <Route path="details" element={<ProfiledDetails />} />
+          <Route path="/recovery" element={<Recovery />}>
+            <Route index element={<Navigate replace to="confirm-email" />} />
+            <Route path="confirm-email" element={<ConfirmEmail />} />
+            <Route path="recovery-code" element={<RecoveryCode />} />
+            <Route path="reset-password" element={<ResetPassword />} />
           </Route>
-        </Route>
 
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </BrowserRouter>
+          <Route
+            path="/app"
+            element={
+              <ProtectedRout>
+                <AppLayout />
+              </ProtectedRout>
+            }
+          >
+            <Route index element={<Navigate replace to="dashboard" />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="workout-plan" element={<WorkoutPlan />} />
+            <Route path="profile" element={<Profile />}>
+              <Route index element={<Navigate replace to="info" />} />
+              <Route path="info" element={<ProfileInfo />} />
+              <Route path="display" element={<ProfileDisplay />} />
+              <Route path="details" element={<ProfiledDetails />} />
+            </Route>
+          </Route>
+
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
+
+      <ToastContainer />
+    </>
   );
 }
 

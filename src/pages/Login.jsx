@@ -5,7 +5,7 @@ import LogoButton from "../components/LogoButton";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/slices/authSlice";
-
+import SpinnerMini from "../components/SpinnerMini";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -65,21 +65,21 @@ const Login = () => {
             />
           </div>
 
-          <NavLink to="/recovery" className="text-green-400">
+          {/* <NavLink to="/recovery" className="text-green-400">
             Forgot passowrd
-          </NavLink>
+          </NavLink> */}
 
-          <div className="flex items-center mb-4">
+          {/* <div className="flex items-center mb-4">
             <input type="checkbox" id="remember" className="mr-2" />
             <label htmlFor="remember" className="text-gray-700">
               Remember me
             </label>
-          </div>
+          </div> */}
           <LoginSignupButton
             disabled={loginStatus === "loading"}
             type={"submit"}
           >
-            Log In
+            {loginStatus === "loading" ? <SpinnerMini /> : "Log In"}
           </LoginSignupButton>
         </form>
 

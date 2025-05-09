@@ -1,14 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
-import ListWorkOutPlan from "./ListWorkOutPlan";
-import { useEffect, useState } from "react";
-import { fetchWorkouts } from "../store/slices/workoutSlice";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import ExerciseForm from "../pages/ExerciseForm";
+import ListWorkOutPlan from "./ListWorkOutPlan";
 import Modal from "./Modal";
+import Spinner from "./Spinner";
 
 const WorkoutPlan = () => {
   const data = useSelector((state) => state.workouts.workouts);
   const user = useSelector((state) => state.user.user);
-  const dispatch = useDispatch();
+  const workoutsStatus = useSelector((state) => state.workouts.status);
 
   const [openForm, setOpenForm] = useState(false);
   const [openOperation, setOpenOperation] = useState(null);
@@ -19,10 +19,6 @@ const WorkoutPlan = () => {
   const handleOpenOperation = (id) => {
     setOpenOperation(openOperation === id ? null : id);
   };
-
-  useEffect(() => {
-    dispatch(fetchWorkouts());
-  }, [dispatch]);
 
   const now = new Date();
   const filteredWorkouts = data
@@ -62,6 +58,14 @@ const WorkoutPlan = () => {
       return true;
     });
 
+  if (workoutsStatus === "loading") {
+    return (
+      <div className="w-full h-screen flex justify-center items-center">
+        <Spinner />
+      </div>
+    );
+  }
+
   return (
     <div className="relative">
       {openForm && (
@@ -88,7 +92,7 @@ const WorkoutPlan = () => {
             <select
               value={activity}
               onChange={(e) => setActivity(e.target.value)}
-              className="pl-2 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-1 focus:ring-main-300 text-gray-700 text-sm"
+              className="pl-2 py-2 rounded-full bg-gray-100 hover:bg-gray-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-main-300 text-gray-700 text-sm"
             >
               <option value="">Activity</option>
               <option value="running">Running</option>
@@ -100,7 +104,7 @@ const WorkoutPlan = () => {
             <select
               value={period}
               onChange={(e) => setPeriod(e.target.value)}
-              className="pl-2 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-1 focus:ring-main-300 text-gray-700 text-sm"
+              className="pl-2 py-2 rounded-full bg-gray-100 hover:bg-gray-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-main-300 text-gray-700 text-sm"
             >
               <option value="">Period</option>
               <option value="week">This Week</option>
@@ -112,7 +116,7 @@ const WorkoutPlan = () => {
           <div>
             <button
               onClick={() => setOpenForm((pre) => !pre)}
-              className="bg-main-700 rounded-4xl pr-3 pl-3 cursor-pointer pt-2 pb-2 text-grey-50 text-sm"
+              className="bg-main-700 hover:bg-green-600 rounded-4xl pr-3 pl-3 cursor-pointer pt-2 pb-2 text-grey-50 text-sm"
             >
               + Add Exercise
             </button>
@@ -143,7 +147,7 @@ const WorkoutPlan = () => {
             ))}
         </div>
 
-        <div className="mt-4 ml-1 grow flex items-end justify-between">
+        {/* <div className="mt-4 ml-1 grow flex items-end justify-between">
           <div>
             <span className="text-grey-350 pr-1.5 text-sm">Showing</span>
             <select className="pl-2 py-2 rounded-full bg-gray-100 text-gray-700 text-sm">
@@ -198,7 +202,7 @@ const WorkoutPlan = () => {
               />
             </svg>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

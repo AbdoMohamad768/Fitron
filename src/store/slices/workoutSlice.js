@@ -7,6 +7,7 @@ import {
   updateWorkout as updateWorkoutAPI,
   getWorkoutByActivity as getWorkoutByActivityAPI,
 } from "../../api/workoutsAPI";
+import { toast } from "react-toastify";
 
 export const fetchWorkouts = createAsyncThunk(
   "workouts/fetchWorkouts",
@@ -33,20 +34,22 @@ export const getWorkoutByActivity = createAsyncThunk(
   getWorkoutByActivityAPI
 );
 
-
-
-
 const initialState = {
   workout: null,
   workouts: [],
-  status: null,
+  status: "idle",
   error: null,
 };
 
 const workoutSlice = createSlice({
   name: "workouts",
   initialState,
-  reducers: {},
+  reducers: {
+    resetStatus: (state) => {
+      state.status = "idle";
+      state.error = null;
+    },
+  },
   extraReducers: function (builder) {
     // For fetching workouts
     builder
@@ -58,24 +61,26 @@ const workoutSlice = createSlice({
         state.workouts = action.payload;
       })
       .addCase(fetchWorkouts.rejected, function (state, action) {
-        state.status = "faild";
+        state.status = "failed";
         state.error = action.error.message;
       });
 
     // For adding a workout
     builder
       .addCase(addWorkout.pending, function (state) {
-        state.status = "loading";
+        state.status = "adding";
       })
       .addCase(addWorkout.fulfilled, function (state, action) {
         state.status = "addedWorkout";
         state.workouts = [...state.workouts, action.payload];
+
+        toast.success("Workout added successfully");
       })
       .addCase(addWorkout.rejected, function (state, action) {
         state.status = "failed";
         state.error = action.error.message;
 
-        console.log(action.error.message);
+        toast.error("Failed to add workout");
       });
 
     // For deleting a workout
@@ -89,12 +94,14 @@ const workoutSlice = createSlice({
         state.workouts = state.workouts.filter(
           (workout) => workout.id !== action.payload
         );
+
+        toast.success("Workout deleted successfully");
       })
       .addCase(deleteWorkout.rejected, function (state, action) {
         state.status = "failed";
         state.error = action.error.message;
 
-        console.log(action.error.message);
+        toast.error("Failed to delete workout");
       });
 
     // For duplicating a workout
@@ -105,12 +112,14 @@ const workoutSlice = createSlice({
       .addCase(duplicateWorkout.fulfilled, function (state, action) {
         state.status = "duplicated";
         state.workouts = [...state.workouts, action.payload];
+
+        toast.success("Workout duplicated successfully");
       })
       .addCase(duplicateWorkout.rejected, function (state, action) {
         state.status = "failed";
         state.error = action.error.message;
 
-        console.log(action.error.message);
+        toast.error("Failed to duplicate workout");
       });
 
     // For updating a workout
@@ -123,12 +132,14 @@ const workoutSlice = createSlice({
         state.workouts = state.workouts.map((workout) =>
           workout.id === action.payload.id ? action.payload : workout
         );
+
+        toast.success("Workout updated successfully");
       })
       .addCase(updateWorkout.rejected, function (state, action) {
         state.status = "failed";
         state.error = action.error.message;
 
-        console.log(action.error.message);
+        toast.error("Failed to update workout");
       });
 
     // For getting a workout by activity
@@ -144,9 +155,10 @@ const workoutSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
 
-        console.log(action.error.message);
+        toast.error("Failed to get workout by activity");
       });
   },
 });
 
+export const { resetStatus } = workoutSlice.actions;
 export default workoutSlice.reducer;

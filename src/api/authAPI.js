@@ -86,7 +86,8 @@ export async function updateUser({
       height: height,
     })
     .eq("id", id)
-    .select();
+    .select()
+    .single();
 
   if (error) {
     console.error("Error updating user data");

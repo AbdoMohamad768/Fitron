@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getSettings, updateSettings } from "../../api/settingsAPI";
-import { updateUser } from "../../api/authAPI";
+import { toast } from "react-toastify";
 
 const initialState = {
-  status: "",
+  status: "idle",
   error: null,
   settings: {},
 };
@@ -13,22 +13,18 @@ export const fetchSettings = createAsyncThunk(
   getSettings
 );
 
-export const UpdateProfile = createAsyncThunk(
-  "settings/updateProfile",
+export const UpdateSettings = createAsyncThunk(
+  "settings/updateSettings",
   updateSettings
-);
-
-export const UpdateDisplay = createAsyncThunk(
-  "settings/updateDisplay",
-  updateUser
 );
 
 const settingsSlice = createSlice({
   name: "settings",
   initialState,
   reducers: {
-    setProfile(state, action) {
-      state.settings = action.payload;
+    resetStatus: (state) => {
+      state.status = "idle";
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
@@ -43,9 +39,28 @@ const settingsSlice = createSlice({
       .addCase(fetchSettings.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
+
+        toast.error("Settings fetch failed");
+      });
+
+    builder
+      .addCase(UpdateSettings.pending, (state) => {
+        state.status = "updating";
+      })
+      .addCase(UpdateSettings.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.settings = action.payload;
+
+        toast.success("Settings updated successfully");
+      })
+      .addCase(UpdateSettings.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+
+        toast.error("Settings update failed");
       });
   },
 });
 
 export default settingsSlice.reducer;
-export const { setProfile } = settingsSlice.actions;
+export const { resetStatus } = settingsSlice.actions;
