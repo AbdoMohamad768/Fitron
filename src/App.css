@@ -1,8 +1,7 @@
 @import "tailwindcss";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-:root {
-}
+:root {}
 
 @theme {
   /* Green Color */
@@ -116,22 +115,20 @@
   --shadow-dark-blue-custom-1: 0px 0px 6px rgba(96, 165, 250, 0.4);
   --shadow-dark-orange-custom-1: 0px 0px 6px rgba(249, 115, 22, 0.4);
   --shadow-dark-menu-sidebar: 0px 0px 4px 1px rgba(52, 211, 153, 0.5);
+
+  --breakpoint-3xl: 920px;
 }
 
 .gradient-1 {
-  background-image: linear-gradient(
-    to bottom left,
-    var(--color-main-700) 22%,
-    var(--color-main-300) 99%
-  );
+  background-image: linear-gradient(to bottom left,
+      var(--color-main-700) 22%,
+      var(--color-main-300) 99%);
 }
 
 .gradient-2 {
-  background-image: linear-gradient(
-    to right,
-    var(--color-main-700),
-    var(--color-grey-200)
-  );
+  background-image: linear-gradient(to right,
+      var(--color-main-700),
+      var(--color-grey-200));
 }
 
 .signup-form,
@@ -140,8 +137,7 @@
   @apply w-md h-fit shadow-custom-1 rounded-lg p-8 mx-4 bg-grey-50;
 }
 
-.test {
-}
+.test {}
 
 .app-layout-header {
   @apply flex justify-between items-center m-3 rounded-xl bg-gray-50 dark:bg-dark-main-800 dark:text-white shadow-sm p-4 col-span-2 sm:row-span-1 sm:col-span-1;
@@ -155,8 +151,7 @@
   */
 }
 
-.sidebar-links-list {
-}
+.sidebar-links-list {}
 
 .sidebar-link-icon {
   @apply text-xl w-11 h-11 rounded-full flex justify-center items-center md:bg-transparent;

@@ -64,8 +64,8 @@ function ProfiledDetails() {
   };
 
   return (
-    <div className="bg-[#E8F0E8] dark:bg-dark-main-750 dark:text-white w-full justify-center h-full flex flex-col sm:flex-row items-center mt-3 mb-5 gap-6 sm:gap-20 px-6 sm:px-10 py-4 rounded-3xl shadow-md">
-      <div className="flex flex-col justify-center items-center gap-3">
+    <div className="bg-[#E8F0E8] dark:bg-dark-main-750 dark:text-white w-full justify-center h-full flex flex-col 3xl:flex-row items-center mt-3 mb-5 gap-6 sm:gap-10 px-6 sm:px-10 py-4 rounded-3xl shadow-md">
+      <div className="flex flex-col justify-center items-center sm:pt-5 gap-3">
         <div className="aspect-square w-[100px] sm:w-[120px] md:w-[150px] lg:w-[180px] shrink-0">
           <img
             src={imageSrc}
@@ -87,7 +87,7 @@ function ProfiledDetails() {
         />
       </div>
 
-      <form className="w-full sm:flex-1" onSubmit={handleSubmit}>
+      <form className="w-full 3xl:flex-1" onSubmit={handleSubmit}>
         <div className="flex flex-col mb-5">
           <div className=" mb-1">
             <label className="font-semibold text-base sm:text-lg md:text-xl">
