@@ -22,60 +22,70 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchWorkouts } from "../store/slices/workoutSlice.js";
 function Dashboard() {
-    const [percentageRunning, setPercentRunning]=useState(0);
-    const [percentageCycling, setPercentCycling]=useState(0);
-    const [percentageSwimming, setPercentSwimming]=useState(0);
-    const [weeklyProgress, setWeeklyProgress] = useState(0);
+  const [percentageRunning, setPercentRunning] = useState(0);
+  const [percentageCycling, setPercentCycling] = useState(0);
+  const [percentageSwimming, setPercentSwimming] = useState(0);
+  const [weeklyProgress, setWeeklyProgress] = useState(0);
+  const [monthlyProgress, setMonthlyProgress] = useState(0);
 
-    const data = useSelector((state) => {
-      return state.workouts.workouts || [];
-    });
-    const dispatch = useDispatch();
-    useEffect(() => {
-      dispatch(fetchWorkouts());
-    }, [dispatch]);
+  const data = useSelector((state) => {
+    return state.workouts.workouts || [];
+  });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchWorkouts());
+  }, [dispatch]);
 
-    useEffect(() => {
-  if (data.length > 0) {
-    const WEEKLY_CALORIE_GOAL = 3000;
-    const now = new Date();
-    const startOfWeek = new Date(now);
-    const day = now.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
-    const diff = now.getDate() - day + (day === 0 ? -6 : 1); // if Sunday, go back 6 days
-    startOfWeek.setDate(diff);
-    const totals = {
-      running: 0,
-      cycling: 0,
-      swimming: 0,
-      weeklyCalories: 0,
-    };
+  useEffect(() => {
+    if (data.length > 0) {
+      const WEEKLY_CALORIE_GOAL = 10000;
+      const MONTHLY_CALORIE_GOAL = 12000;
+      const now = new Date();
+      const startOfWeek = new Date(now);
+      const dayOfWeek = now.getDay();
+      const mondayOffset = (dayOfWeek + 6) % 7;
+      startOfWeek.setDate(now.getDate() - mondayOffset);
+      startOfWeek.setHours(0, 0, 0, 0);
+      const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+      const totals = {
+        running: 0,
+        cycling: 0,
+        swimming: 0,
+        weeklyCalories: 0,
+        monthlyCalories: 0,
+      };
 
-    data.forEach((ele) => {
-      const workoutDate = new Date(ele.start_date);
-      if (workoutDate >= startOfWeek) {
-        totals.weeklyCalories += ele.calories_burned;
-      }
-      if (ele.activity === "running") totals.running += ele.calories_burned;
-      if (ele.activity === "cycling") totals.cycling += ele.calories_burned;
-      if (ele.activity === "swimming") totals.swimming += ele.calories_burned;
-    });
+      data.forEach((ele) => {
+        const workoutDate = new Date(ele.start_date);
+        if (workoutDate >= startOfWeek) {
+          totals.weeklyCalories += ele.calories_burned || 0;
+        }
+        if (workoutDate >= startOfMonth) {
+          totals.monthlyCalories += ele.calories_burned || 0;
+        }
+        if (ele.activity === "running") totals.running += ele.calories_burned;
+        if (ele.activity === "cycling") totals.cycling += ele.calories_burned;
+        if (ele.activity === "swimming") totals.swimming += ele.calories_burned;
+      });
 
-    const totalCalories = totals.running + totals.cycling + totals.swimming ; 
+      const totalCalories = totals.running + totals.cycling + totals.swimming;
 
-    setPercentRunning(Math.round((totals.running / totalCalories) * 100));
-    setPercentCycling(Math.round((totals.cycling / totalCalories) * 100));
-    setPercentSwimming(Math.round((totals.swimming / totalCalories) * 100));
-    const progress = Math.min(
+      setPercentRunning(Math.round((totals.running / totalCalories) * 100));
+      setPercentCycling(Math.round((totals.cycling / totalCalories) * 100));
+      setPercentSwimming(Math.round((totals.swimming / totalCalories) * 100));
+      const monthlyProgress = Math.min(
+        (totals.monthlyCalories / MONTHLY_CALORIE_GOAL) * 100,
+        100
+      );
+      setMonthlyProgress(Math.round(monthlyProgress));
+      const progress = Math.min(
         (totals.weeklyCalories / WEEKLY_CALORIE_GOAL) * 100,
         100
       );
       setWeeklyProgress(Math.round(progress));
-    
+    }
+  }, [data]);
 
-  }
-  
-}, [data]);
-  
   return (
     <>
       <div className="grid grid-cols-1 dark:text-dark-black-900 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 cursor-pointer">
@@ -89,7 +99,9 @@ function Dashboard() {
         </div>
         <div className=" p-[15px] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
           <PersonalCard
-            name={`${percentageRunning + percentageCycling + percentageSwimming}%`}
+            name={`${
+              percentageRunning + percentageCycling + percentageSwimming
+            }%`}
             icon={faFireFlameCurved}
             para="Cardio Burn"
             style="#1ea7c5"
@@ -117,7 +129,9 @@ function Dashboard() {
         <div className="h-[100%] pt-[40px] w-full">
           <div className="pb-[20px] flex justify-between">
             <div className="">
-              <p className="text-[22] dark:text-dark-black-900">Workout Static</p>
+              <p className="text-[22] dark:text-dark-black-900">
+                Workout Static
+              </p>
             </div>
             <div className=" flex align-center gap-10 md:gap-5 ">
               <div className="flex gap-[5px] text-blue">
@@ -154,7 +168,7 @@ function Dashboard() {
           </div>
         </div>
         <div className="h-full">
-          <Progress progress={weeklyProgress}/>
+          <Progress progress={monthlyProgress} />
         </div>
       </div>
 

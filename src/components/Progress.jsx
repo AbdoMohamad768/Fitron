@@ -57,7 +57,7 @@ const Progress = ({progress}) => {
           </div>
         </div>
         <p className="text-gray-500 dark:text-dark-black-900 text-sm mt-4 text-center w-48 animate-fade-in-4">
-          this is the Active Goals of the User
+          this is the Active Goals of the User in the Month
         </p>
         <button className="mt-6 px-4 py-2 rounded-md hover:bg-green-300  hover:-translate-y-1 transition duration-150 cursor-pointer "onClick={() => setOpenForm((pre) => !pre)}>
           Set Target
