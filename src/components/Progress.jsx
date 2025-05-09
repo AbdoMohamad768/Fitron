@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import Modal from './Modal';
 import TargetForm from './TargetForm';
 
-const Progress = () => {
+const Progress = ({progress}) => {
   const [animatedPercentage, setAnimatedPercentage] = useState(0);
-  const targetPercentage = 81;
+  const targetPercentage = progress;
   const circumference = 2 * Math.PI * 45;
   const dashOffset = circumference - (animatedPercentage / 100) * circumference;
   const [openForm, setOpenForm] = useState(false);
